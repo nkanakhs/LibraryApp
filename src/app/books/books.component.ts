@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { BookService } from '../Services/book.service';
 import { book } from '../Interfaces/book';
-import { DatePipe } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { CustomDatePipe } from '../customDate.pipe';
@@ -9,7 +8,7 @@ import { CustomDatePipe } from '../customDate.pipe';
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [DatePipe, MatButtonModule, MatDividerModule,CustomDatePipe],
+  imports: [MatButtonModule, MatDividerModule,CustomDatePipe],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css',
   providers: [CustomDatePipe]

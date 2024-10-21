@@ -1,22 +1,22 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { BookService } from '../Services/book.service';
 import { book } from '../Interfaces/book';
-import { DatePipe } from '@angular/common';
+import { CustomDatePipe } from '../customDate.pipe';
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,DatePipe],
+  imports: [RouterOutlet,RouterLink,CustomDatePipe],
   templateUrl: './homepage.component.html',
-  styleUrl: './homepage.component.css'
+  styleUrl: './homepage.component.css',
+  providers: [CustomDatePipe]
 })
 export class HomepageComponent {
   loading = true;
   availableBooks: book[] = [];
 
-  constructor(private bookService: BookService){}
+  constructor(private bookService: BookService, private customDatePipe: CustomDatePipe){}
 
   ngOnInit(){
     this.getHomepage();
@@ -24,9 +24,10 @@ export class HomepageComponent {
 
   getHomepage(){
     this.bookService.getBooks().subscribe(data => {
-      data.map(x => {
+      data.forEach(x => {
         if (x.available){
-          this.availableBooks.push(x);
+          x.createdOn = this.customDatePipe.transform(x.createdOn)
+          this.availableBooks.push(x)
         }
       })
       this.loading = false
