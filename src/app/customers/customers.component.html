@@ -1,0 +1,34 @@
+@if(loading == true){
+    <div class="container text-center mt-5">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}@else {
+    <div class="container text-center mt-3">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody >
+                @for(customer of customers;track idx; let idx = $index;){
+                    <tr>
+                        <th>{{idx + 1 }}</th>
+                        <td>{{customer.name}}</td>
+                        <td>{{customer.surname}}</td>
+                        <td>{{customer.email}}</td>
+                        <td>{{customer.phoneNumber}}</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

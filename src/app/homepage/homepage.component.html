@@ -1,0 +1,36 @@
+@if(loading == true){
+    <div class="container text-center mt-5">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}@else {
+    <div class="container text-center mt-3">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Created On</th>
+                    </tr>
+                </thead>
+                <tbody >
+                @for(book of availableBooks; track book;let idx=$index){
+                    <tr>
+                        <th>{{idx + 1 }}</th>
+                        <td>{{book.name}}</td>
+                        <td>{{book.year}}</td>
+                        <td>{{book.type}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.createdOn | date:"yyyy-MM-dd hh:mm" }}</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

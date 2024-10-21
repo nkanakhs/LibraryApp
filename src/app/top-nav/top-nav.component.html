@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark fs-5 ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" routerLink = "">
+        <img src="/logo-4-removebg-preview.png" class="img-log-c" alt="Libary App">
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link" href="#" routerLink = "home" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" routerLink = "books" routerLinkActive="active">Books</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" routerLink = "reservations" routerLinkActive="active">
+              Reservations
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" href="#" routerLink = "customers" >Customers</a>
+          </li>
+        </ul>
+        <ul class="d-flex navbar-nav" role="search">
+            <li class="nav-item " role="search">
+              <a class="nav-link disabled"  aria-disabled="true" href="#" routerLink = "customers" >Profile</a>
+            </li>
+            <li class="nav-item " role="search">
+              <a class="nav-link disabled" aria-disabled="true" href="#" routerLink = "customers" >Logout</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

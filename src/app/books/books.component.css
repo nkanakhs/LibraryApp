@@ -1,0 +1,11 @@
+
+.view-button{
+    margin-right: 1%;
+}
+.edit-button{
+    margin-right: 1%;
+}
+.delete-button{
+    color:rgb(243, 73, 73) !important;
+    border:2px solid rgb(243, 68, 68) !important;
+}

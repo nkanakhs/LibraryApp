@@ -1,0 +1,102 @@
+/* Navbar */
+.navbar {
+    position: absolute;
+    width: 100vw;
+    height: 10vh;
+    top: 0;
+    left: 0;
+    background: #252525;
+    opacity: 40%;
+    z-index: 10;
+}
+
+/* Navbar Group */
+.navbar-group {
+    position: absolute;
+    width: 650px;
+    height: 108px;
+    left: calc(50% - 650px / 2);
+    top: calc(50% - 108px / 2 - 18.5px);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Navbar Items */
+.navbar-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    height: 108px;
+    font-family: 'Product Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.navbar-item:hover {
+    border-bottom: 5px solid #FFFFFF;
+}
+
+.navbar-item.active {
+    border-bottom: 5px solid #FFFFFF;
+}
+
+
+.hamburger {
+    display: none;
+    position: absolute;
+    top: 2vh; /* Adjust for positioning */
+    right: 2vw;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 20;
+}
+
+/* Media query for smaller screens (e.g., below 768px) */
+@media (max-width: 768px) {
+    .navbar-group {
+        display: none; /* Hide the navbar items */
+    }
+    
+    .navbar {
+        display: none; /* Hide the navbar items */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger icon */
+    }
+}
+
+
+.responsive-menu {
+    display: none; /* Hidden until clicked */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0; /* Below the navbar */
+    left: 0;
+    width: 100vw;
+    background: #252525;
+    opacity: 40%;
+    z-index: 15;
+}
+
+.responsive-menu a {
+    padding: 1rem;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.responsive-menu a:hover {
+    border-bottom: 5px solid #FFFFFF;
+}
+
+.responsive-menu.show {
+    display: flex; /* Make the menu visible */
+}
