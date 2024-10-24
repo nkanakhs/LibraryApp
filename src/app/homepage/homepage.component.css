@@ -1,0 +1,53 @@
+.view-button{
+    margin-right: 1%;
+    background: rgba(177, 177, 177, 0.2);
+    color: #383838 !important;
+    border-radius: 40px !important;
+    border-color:   rgba(185, 185, 184, 0.2)!important; /* Solid border color */
+}
+
+.edit-button{
+    margin-right: 1%;
+    background: rgba(178, 233, 224, 0.2);
+    color: #383838 !important;
+    border-radius: 40px !important;
+    border-color:   rgba(185, 185, 184, 0.2)!important; /* Solid border color */
+}
+.delete-button{
+    margin-right: 1%;
+    background: rgba(250, 79, 79, 0.2);
+    color: #383838 !important;
+    border-radius: 40px !important;
+    border-color:   rgba(185, 185, 184, 0.2)!important; /* Solid border color */
+}
+
+.custom-thead {
+    border-radius: 15px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+}
+
+thead th {
+    background-color: rgba(248 250 252);
+    color: rgb(148 163 184);
+} 
+
+.custom-header th {
+    padding-top: 25px;
+    padding-bottom: 25px; /* Adjusts header row height */
+    font-weight: 500 !important;
+}
+
+tbody tr th {
+    font-weight: 500 !important;
+}
+
+.color-bg-custom{
+    background-color: rgba(248 250 252) !important;
+}
+
+.custom-font{
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+}

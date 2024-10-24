@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CustomersService } from '../Services/customers.service';
 import { customer } from '../Interfaces/customer';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-customers',
   standalone: true,
-  imports: [],
+  imports: [MatButtonModule, MatDividerModule],
   templateUrl: './customers.component.html',
   styleUrl: './customers.component.css'
 })

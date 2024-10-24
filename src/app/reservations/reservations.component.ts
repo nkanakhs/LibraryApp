@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { ReservationsService } from '../Services/reservations.service';
 import { reservation } from '../Interfaces/reservation';
 import { CustomDatePipe } from '../customDate.pipe';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-reservations',
   standalone: true,
-  imports: [CustomDatePipe],
+  imports: [MatButtonModule, MatDividerModule,CustomDatePipe],
   templateUrl: './reservations.component.html',
   styleUrl: './reservations.component.css',
   providers: [CustomDatePipe]

@@ -6,25 +6,35 @@
     </div>
 }@else {
     <div class="container text-center mt-3">
-        <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered">
-                <thead class="table-dark">
+        <div class="table-responsive rounded-4 border-3 color-bg-custom">
+            <table class="table table-hover custom-font">
+                <thead class="custom-header">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Surname</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone Number</th>
+                        <th scope="col text-base">#</th>
+                        <th scope="col text-base">Name</th>
+                        <th scope="col text-base">Surname</th>
+                        <th scope="col text-base">Email</th>
+                        <th scope="col text-base">Phone Number</th>
+                        <th scope="col text-base">Actions</th>
                     </tr>
                 </thead>
                 <tbody >
                 @for(customer of customers;track idx; let idx = $index;){
                     <tr>
-                        <th>{{idx + 1 }}</th>
-                        <td>{{customer.name}}</td>
-                        <td>{{customer.surname}}</td>
-                        <td>{{customer.email}}</td>
-                        <td>{{customer.phoneNumber}}</td>
+                        <th class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{idx + 1 }}</th>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{customer.name}}</td>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{customer.surname}}</td>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{customer.email}}</td>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{customer.phoneNumber}}</td>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
+                            <section>
+                                <div class="example-button-row">
+                                    <button mat-stroked-button class="edit-button">Edit</button>
+                                    <button mat-stroked-button class="view-button">View</button>
+                                    <button mat-stroked-button class="delete-button">Delete</button>
+                                </div>
+                            </section>
+                        </td>
                     </tr>
                 }
                 </tbody>

@@ -6,27 +6,37 @@
     </div>
 }@else {
     <div class="container text-center mt-3">
-        <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered">
-                <thead class="table-dark">
+        <div class="table-responsive rounded-4 border-3 color-bg-custom">
+            <table class="table table-hover custom-font">
+                <thead class="custom-header">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Book Name</th>
-                        <th scope="col">Customer Name</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Reserved On</th>
-                        <th scope="col">Returned By</th>
+                        <th scope="col text-base">#</th>
+                        <th scope="col text-base">Book Name</th>
+                        <th scope="col text-base">Customer Name</th>
+                        <th scope="col text-base">Status</th>
+                        <th scope="col text-base">Reserved On</th>
+                        <th scope="col text-base">Returned By</th>
+                        <th scope="col text-base">Actions</th>
                     </tr>
                 </thead>
                 <tbody >
                 @for(reservation of reservations; track idx; let idx= $index;){
                     <tr>
-                        <th>{{idx + 1 }}</th>
-                        <td>{{reservation.book.name}}</td>
-                        <td>{{reservation.customer.name}} {{reservation.customer.surname}}</td>
-                        <td>{{reservation.status}}</td>
-                        <td>{{reservation.reservedOn}}</td>
-                        <td>{{reservation.returnBy}}</td>
+                        <th class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{idx + 1 }}</th>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.book.name}}</td>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.customer.name}} {{reservation.customer.surname}}</td>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.status}}</td>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.reservedOn}}</td>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.returnBy}}</td>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
+                            <section>
+                                <div class="example-button-row">
+                                    <button mat-stroked-button class="edit-button">Edit</button>
+                                    <button mat-stroked-button class="view-button">View</button>
+                                    <button mat-stroked-button class="delete-button">Delete</button>
+                                </div>
+                            </section>
+                        </td>
                     </tr>
                 }
                 </tbody>
