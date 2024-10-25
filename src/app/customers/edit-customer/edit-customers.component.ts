@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-edit-customers',
+  selector: 'app-edit-customer',
   standalone: true,
   imports: [],
   templateUrl: './edit-customers.component.html',

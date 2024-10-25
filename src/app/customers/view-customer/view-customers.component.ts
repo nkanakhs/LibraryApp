@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-view-customers',
+  selector: 'app-view-customer',
   standalone: true,
   imports: [],
   templateUrl: './view-customers.component.html',
