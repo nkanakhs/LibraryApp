@@ -1,6 +1,6 @@
  .navbar{
     opacity: 0.9;
-    /* background-color: #8F857D !important; */
+     background-color: #8F857D !important;
 }
 
 .img-log-c{
@@ -8,3 +8,7 @@
     width:40px;
     height:60px;
 }
+
+.custom-visible {
+    visibility: visible !important; /* Override the collapse class */
+  }

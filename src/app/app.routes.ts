@@ -19,14 +19,10 @@ export const routes: Routes = [
   {path: 'home', component: HomepageComponent},
 
 
-  {
-    path: 'books', component: BooksComponent,
-    children: [
-      {path: "edit-books", component: EditBookComponent},
-      {path: "view-books", component: ViewBookComponent},
-
-    ]
-  },
+  {path: 'books', component: BooksComponent, },
+  
+  {path: "books/view-books/:id", component: ViewBookComponent},
+  {path: "books/edit-books/:id", component: EditBookComponent},
 
   {
     path: 'reservations', component: ReservationsComponent,
@@ -36,13 +32,10 @@ export const routes: Routes = [
     ]
   },
 
-  {
-    path: 'customers', component: CustomersComponent,
-    children: [
-      {path: "edit-customer", component: EditCustomersComponent},
-      {path: "view-customer", component: ViewCustomersComponent},
-    ]
-  },
+  {path: 'customers', component: CustomersComponent},
+  {path: 'customers/edit-customer/:id', component: EditCustomersComponent},
+  {path: 'customers/add-customer', component: EditCustomersComponent},
+  {path: 'customers/view-customer/:id', component: ViewCustomersComponent},
 
   {path: '**', component: PageNotFoundComponent},
 ];
