@@ -1,49 +1,72 @@
-@if(loading == true){
-    <div class="container text-center mt-5">
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
+<div class="container text-center mt-5">
+  <!-- Loading Spinner or Card Content -->
+  @if (loading == true) {
+    <div class="text-center mt-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
-}@else {
-    <div class="container text-center mt-3">
-        <div class="table-responsive rounded-4 border-3 color-bg-custom">
-            <table class="table table-hover custom-font" >
-                <thead class="custom-header">
-                    <tr>
-                        <th scope="col text-base">#</th>
-                        <th scope="col text-base">Name</th>
-                        <th scope="col text-base">Year</th>
-                        <th scope="col text-base">Type</th>
-                        <th scope="col text-base">Author</th>
-                        <th scope="col text-base">Created On</th>
-                        <th scope="col text-base">Actions</th>
-                    </tr>
-                </thead>
-                <tbody >
-                @for(book of books; track book;let idx=$index){
-                    <tr>
-                        <th class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{idx + 1 }}</th>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{book.name}}</td>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{book.year}}</td>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{book.type}}</td>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{book.author}}</td>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{book.createdOn}}</td>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
-                            <section>
-                                <div class="example-button-row">
-                                    <button mat-stroked-button class="edit-button" [routerLink] = "['edit-book', book._id]">Edit</button>
-                                    <button mat-stroked-button class="view-button" [routerLink] = "['view-book', book._id]">View</button>
-                                    <button mat-stroked-button class="delete-button">Delete</button>
-                                </div>
-                            </section>
-                        </td>
-                    </tr>
-                }
-                <tr class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
-                    <button mat-stroked-button class="edit-button" [routerLink] = "['add-book']">Add new Customer</button>
-                </tr>
-                </tbody>
-            </table>
+  } @else {
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
+
+
+      @for (book of books; track book; let idx = $index) {
+
+
+        <div class="col d-flex justify-content-center">
+          <div class="flip-card-container ">
+            <div class="flip-card">
+              <div class="card-front">
+                <figure>
+                  <div class="img-bg"></div>
+                  <img
+                    src="/book.jpg"
+                    alt="Brohm Lake">
+                  <figcaption>Brohm Lake</figcaption>
+                </figure>
+                <ul>
+                  <li>Detail 1</li>
+                  <li>Detail 2</li>
+                  <li>Detail 3</li>
+                  <li>Detail 4</li>
+                  <li>Detail 5</li>
+                </ul>
+              </div>
+              <div class="card-back">
+                <button>Book</button>
+              </div>
+            </div>
+          </div>
         </div>
+
+
+        <div class="col d-flex justify-content-center">
+          <div class="flip-card-container">
+            <div class="flip-card">
+              <div class="card-front">
+                <figure>
+                  <div class="img-bg"></div>
+                  <img
+                    src="https://images.unsplash.com/photo-1545436864-cd9bdd1ddebc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                    alt="Image 2">
+                  <figcaption>Another Lake</figcaption>
+                </figure>
+                <ul>
+                  <li>Detail 1</li>
+                  <li>Detail 2</li>
+                  <li>Detail 3</li>
+                  <li>Detail 4</li>
+                  <li>Detail 5</li>
+                </ul>
+              </div>
+              <div class="card-back">
+                <button>Book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      }
+        </div>
+      }
     </div>
-}

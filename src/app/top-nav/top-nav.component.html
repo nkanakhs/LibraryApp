@@ -1,14 +1,13 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-light fs-5 ">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#" routerLink = "">
-      <img src="/logo-4-removebg-preview.png" class="img-log-c" alt="Libary App">
+<nav class="navbar navbar-expand-lg bg-body-tertiary"style="background-color: transparent;">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="logo-4-removebg-preview.png" alt="Logo" class="d-inline-block align-text-top img-log-c" style="height: 40px;"> <!-- Adjust height as needed -->
+      LibrayApp
     </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-nav mx-auto" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 custom-visible">
         <li class="nav-item">
           <a class="nav-link" href="#" routerLink ="home" routerLinkActive="active">Home</a>
@@ -23,14 +22,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" href="#" routerLink ="customers" >Customers</a>
-        </li>
-      </ul>
-      <ul class="d-flex navbar-nav custom-visible" role="search">
-        <li class="nav-item " role="search">
-          <a class="nav-link disabled"  aria-disabled="true" href="#" routerLink ="customers" >Profile</a>
-        </li>
-        <li class="nav-item " role="search">
-          <a class="nav-link disabled" aria-disabled="true" href="#" routerLink ="customers" >Logout</a>
         </li>
       </ul>
     </div>
