@@ -1,11 +1,16 @@
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: #b27171 !important;}
+body { margin: 0; font-family: Roboto,
+             "Helvetica Neue", sans-serif;
+        }
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; 
+    
+    background: url(/image.jpeg) center center;
+    background-size: cover;  
+    font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .title-card{
     color: red ;

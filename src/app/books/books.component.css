@@ -357,3 +357,33 @@ button:focus+.design-container {
   font-size: 16px;
   font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+
+.container {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 15px; /* Adjust if needed */
+  padding-right: 15px;
+  background-color: black;
+  border-radius: 10px;
+}
+
+.custom-button{
+  width: 120px; 
+  height: 40px;
+  display: block;
+  margin-bottom: 6px;
+}
+.view-button{
+  display: block;
+  margin-bottom: 3px;
+}
+.delete-button{
+  display: block;
+}
+
+.custom-container{
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
+    backdrop-filter: blur(10px); /* Adjust blur to preference */
+    border-radius: 8px; /* Optional: softens the edges */
+}
