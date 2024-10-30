@@ -30,7 +30,7 @@
                             <section>
                                 <div class="example-button-row">
                                     <button mat-stroked-button class="edit-button" [routerLink] = "['edit-customer', customer._id]">Edit</button>
-                                    <button mat-stroked-button class="view-button">View</button>
+                                    <button mat-stroked-button class="view-button" [routerLink] = "['view-customer', customer._id]">View</button>
                                     <button mat-stroked-button class="delete-button">Delete</button>
                                 </div>
                             </section>
@@ -38,7 +38,7 @@
                     </tr>
                 }
                 <tr class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
-                    <button mat-stroked-button class="edit-button" [routerLink] = "['add-customer']">Add new Customer</button>
+                    <button mat-stroked-button class="edit-button" [routerLink] = "['add-customer']">Add new Book</button>
                 </tr>
                 </tbody>
             </table>

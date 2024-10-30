@@ -19,10 +19,11 @@ export const routes: Routes = [
   {path: 'home', component: HomepageComponent},
 
 
-  {path: 'books', component: BooksComponent, },
+  {path: 'books', component: BooksComponent},
   
-  {path: "books/view-books/:id", component: ViewBookComponent},
-  {path: "books/edit-books/:id", component: EditBookComponent},
+  {path: 'books/view-book/:id', component: ViewBookComponent},
+  {path: 'books/add-book', component: EditBookComponent},
+  {path: 'books/edit-book/:id', component: EditBookComponent},
 
   {
     path: 'reservations', component: ReservationsComponent,

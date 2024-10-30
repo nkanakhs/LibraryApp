@@ -1,1 +1,55 @@
-<p>view-customers works!</p>
+
+<div class="container text-center mt-3">
+    <div class="max-w-lg rounded overflow-hidden shadow-lg">
+      <div class="title-card mb-5 mt-4">
+        {{title}}
+      </div> 
+      <div class="card-body px-5">
+        <form class="w-full px-5" [formGroup]= "viewcustomerForm">
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full px-3 mb-6 mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                          First name
+                      </label>
+                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 
+                                      rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
+                                      type="text" formControlName = "name" [readOnly]="true"/>
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-6">
+                  <div class="w-full px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                            Last Name
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none 
+                                        focus:bg-white focus:border-gray-500" 
+                                    type="text" formControlName = "surname" [readOnly]="true"/>
+                  </div>
+                </div>
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Phone Number:</label>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight
+                              focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="text"formControlName="phoneNumber" [readOnly]="true"/>
+              </div>
+            </div>
+            <div  class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Email</label>
+                <input type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight
+                focus:outline-none focus:bg-white focus:border-gray-500" formControlName = "email" [readOnly]="true">
+              </div>
+            </div>
+            
+            <div class="text-center mb-4">
+                <button ngClass="{ 'disabled-button': isDisabled }" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" 
+                      type="submit">
+                  Upload
+                </button>
+            </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>

@@ -31,14 +31,17 @@
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
                             <section>
                                 <div class="example-button-row">
-                                    <button mat-stroked-button class="edit-button">Edit</button>
-                                    <button mat-stroked-button class="view-button">View</button>
+                                    <button mat-stroked-button class="edit-button" [routerLink] = "['edit-book', book._id]">Edit</button>
+                                    <button mat-stroked-button class="view-button" [routerLink] = "['view-book', book._id]">View</button>
                                     <button mat-stroked-button class="delete-button">Delete</button>
                                 </div>
                             </section>
                         </td>
                     </tr>
                 }
+                <tr class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
+                    <button mat-stroked-button class="edit-button" [routerLink] = "['add-book']">Add new Customer</button>
+                </tr>
                 </tbody>
             </table>
         </div>

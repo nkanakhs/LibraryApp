@@ -25,8 +25,7 @@ export class EditCustomersComponent {
       name: new FormControl('', [Validators.required , Validators.minLength(3), Validators.maxLength(15)]),
       surname: new FormControl('', [Validators.required , Validators.minLength(3), Validators.maxLength(15)]),
       email: new FormControl('', [Validators.required , Validators.email]),
-      phoneNumber: new FormControl('', [Validators.required , Validators.minLength(8)]),
-      
+      phoneNumber: new FormControl('', [Validators.required , Validators.minLength(8)])
     });
   }
 

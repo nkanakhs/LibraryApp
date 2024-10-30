@@ -4,11 +4,12 @@ import { book } from '../Interfaces/book';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { CustomDatePipe } from '../customDate.pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule,CustomDatePipe],
+  imports: [MatButtonModule, MatDividerModule,CustomDatePipe,RouterLink],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css',
   providers: [CustomDatePipe]

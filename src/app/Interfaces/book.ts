@@ -5,5 +5,5 @@ export interface book{
     name: string;
     type: string;
     year: number;
-    id: number;
+    _id?: string;
 }
