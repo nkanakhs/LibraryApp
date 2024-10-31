@@ -66,10 +66,9 @@ export class EditCustomersComponent {
           email:this.editCustomerForm.controls['email'].value,
           phoneNumber: this.editCustomerForm.controls['phoneNumber'].value
         }
-        this.customerService.editCustomer(this.customer).subscribe(data =>{
-          console.log(data)
-        }, error =>{
-          console.log(error)
+        this.customerService.editCustomer(this.customer).subscribe({
+          next: response => console.log(response),
+          error: error => console.log(error)  
         });
       }
     }else{  //add new customer
@@ -80,10 +79,9 @@ export class EditCustomersComponent {
           email:this.editCustomerForm.controls['email'].value,
           phoneNumber: this.editCustomerForm.controls['phoneNumber'].value
         }
-        this.customerService.addCustomer(this.customer).subscribe(data =>{
-          console.log(data)
-        }, error =>{
-          console.log(error)
+        this.customerService.addCustomer(this.customer).subscribe({
+          next: response => console.log(response),
+          error: error => console.log(error)  
         });
       }
     }

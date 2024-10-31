@@ -38,4 +38,11 @@ export class BooksComponent {
       }); 
   }
 
+  deleteBook(book : book){
+    this.bookService.deleteBook(book).subscribe({
+      next: response => console.log(response),
+      error: error => console.log(error)
+    })
+  }
+
 }

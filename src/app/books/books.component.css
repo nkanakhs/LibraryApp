@@ -384,6 +384,6 @@ button:focus+.design-container {
 
 .custom-container{
     background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
-    backdrop-filter: blur(10px); /* Adjust blur to preference */
+    backdrop-filter: blur(3px); /* Adjust blur to preference */
     border-radius: 8px; /* Optional: softens the edges */
 }

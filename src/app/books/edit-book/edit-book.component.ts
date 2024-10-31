@@ -25,6 +25,7 @@ export class EditBookComponent {
     this.editbookForm = new FormGroup({
       name: new FormControl('', [Validators.required , Validators.minLength(3), Validators.maxLength(15)]),
       author: new FormControl('', [Validators.required , Validators.minLength(3), Validators.maxLength(15)]),
+      available: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required ),
       year: new FormControl('', Validators.required ),
       createdOn: new FormControl('', Validators.required )

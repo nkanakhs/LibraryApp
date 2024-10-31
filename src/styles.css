@@ -1,14 +1,13 @@
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto,
-             "Helvetica Neue", sans-serif;
-        }
+body { margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 
 html, body { height: 100%; }
 body { margin: 0; 
     
-    background: url(/image.jpeg) center center;
+    
     background-size: cover;  
     font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -21,5 +20,5 @@ body { margin: 0;
 
 .disabled-button {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: 0.;
   }

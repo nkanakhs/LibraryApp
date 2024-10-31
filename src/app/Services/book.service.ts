@@ -31,8 +31,12 @@ export class BookService {
   }
 
   addBook(book: book): Observable<any>{
-    console.log('request made')
-    return this.http.post<book>(this.specificBookUrl , book);
+    console.log('request made:' + book)
+    return this.http.post<book>(this.bookUrl , book);
   }
 
+  deleteBook(book: book): Observable<any>{
+    console.log("book name:" + book.name + "book id:" + book._id)
+    return this.http.delete(this.specificBookUrl + book._id)
+  }
 }

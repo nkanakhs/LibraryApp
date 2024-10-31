@@ -31,14 +31,14 @@
                                 <div class="example-button-row">
                                     <button mat-stroked-button class="edit-button" [routerLink] = "['edit-customer', customer._id]">Edit</button>
                                     <button mat-stroked-button class="view-button" [routerLink] = "['view-customer', customer._id]">View</button>
-                                    <button mat-stroked-button class="delete-button">Delete</button>
+                                    <button mat-stroked-button class="delete-button" (click)="deleteCustomer(customer)">Delete</button>
                                 </div>
                             </section>
                         </td>
                     </tr>
                 }
                 <tr class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
-                    <button mat-stroked-button class="edit-button" [routerLink] = "['add-customer']">Add new Book</button>
+                    <button mat-stroked-button class="edit-button" [routerLink] = "['add-customer']">Add new Customer</button>
                 </tr>
                 </tbody>
             </table>

@@ -33,4 +33,12 @@ export class CustomersComponent {
       this.loading = false
     })
   }
+
+  deleteCustomer(customer: customer){
+    this.customerService.deleteCustomer(customer).subscribe(data =>{
+      console.log(data)
+    }, error =>{
+      console.log(error)
+    });
+  }
 }
