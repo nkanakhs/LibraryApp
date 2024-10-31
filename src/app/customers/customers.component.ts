@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CustomersService } from '../Services/customers.service';
 import { customer } from '../Interfaces/customer';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { RouterLink } from '@angular/router';
@@ -16,6 +18,8 @@ export class CustomersComponent {
 
   customers: customer[] = [];
   loading = true;
+  modalService = inject(NgbModal);
+
 
   constructor(private customerService: CustomersService){
 
@@ -41,4 +45,17 @@ export class CustomersComponent {
       console.log(error)
     });
   }
+
+  openConfirmModal(customer: customer) {
+    const modalRef = this.modalService.open(ConfirmModalComponent);
+    modalRef.result.then(
+        (result) => {
+            this.deleteCustomer(customer)
+            //console.log('Modal closed with:', result);  
+        },
+        (reason) => {
+           // console.log('Modal dismissed with:', reason);
+        }
+    );
+}
 }

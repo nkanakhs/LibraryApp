@@ -31,7 +31,7 @@
                                 <div class="example-button-row">
                                     <button mat-stroked-button class="edit-button" [routerLink] = "['edit-customer', customer._id]">Edit</button>
                                     <button mat-stroked-button class="view-button" [routerLink] = "['view-customer', customer._id]">View</button>
-                                    <button mat-stroked-button class="delete-button" (click)="deleteCustomer(customer)">Delete</button>
+                                    <button mat-stroked-button class="delete-button" (click)="openConfirmModal(customer)">Delete</button>
                                 </div>
                             </section>
                         </td>

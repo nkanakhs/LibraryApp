@@ -1,13 +1,15 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, TemplateRef,ViewChild,inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomersService } from '../../Services/customers.service';
 import { customer } from '../../Interfaces/customer';
 import { FormControl, FormGroup, Validators, FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { ToastService } from '../../Services/toast-service';
+import { ToastsContainer } from "../../toast-container/toast-container.component";
 
 @Component({
   selector: 'app-edit-customer',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ToastsContainer],
   templateUrl: './edit-customers.component.html',
   styleUrl: './edit-customers.component.css'
 })
@@ -17,10 +19,12 @@ export class EditCustomersComponent {
   customer !: customer;
   title : string = '';
   // buttonDisabled: boolean = false;
-
+  toastService = inject(ToastService); 
+  @ViewChild('successTpl') successTpl!: TemplateRef<any>;
+  
   editCustomerForm : FormGroup = new FormGroup({});
 
-  constructor(private route: ActivatedRoute, private customerService: CustomersService){
+  constructor(private route: ActivatedRoute, private customerService: CustomersService,private router: Router){
     this.editCustomerForm = new FormGroup({
       name: new FormControl('', [Validators.required , Validators.minLength(3), Validators.maxLength(15)]),
       surname: new FormControl('', [Validators.required , Validators.minLength(3), Validators.maxLength(15)]),
@@ -67,7 +71,10 @@ export class EditCustomersComponent {
           phoneNumber: this.editCustomerForm.controls['phoneNumber'].value
         }
         this.customerService.editCustomer(this.customer).subscribe({
-          next: response => console.log(response),
+          next: response =>{ 
+            this.showSuccess(this.successTpl)
+            //console.log(response)
+          },
           error: error => console.log(error)  
         });
       }
@@ -80,11 +87,26 @@ export class EditCustomersComponent {
           phoneNumber: this.editCustomerForm.controls['phoneNumber'].value
         }
         this.customerService.addCustomer(this.customer).subscribe({
-          next: response => console.log(response),
+          next: response => {
+            this.showSuccess(this.successTpl),
+            this.router.navigate(['/customers'])
+          },
           error: error => console.log(error)  
         });
       }
     }
   }
+
+  showSuccess(template: TemplateRef<any>) {
+    this.toastService.show({ template, classname: 'custom-toast text-light' });
+  }
+  
+  showError(template: TemplateRef<any>) {
+    this.toastService.show({ template, classname: 'bg-danger text-light' });
+  }
+
+  ngOnDestroy(): void {
+		this.toastService.clear();
+	}
 
 }
