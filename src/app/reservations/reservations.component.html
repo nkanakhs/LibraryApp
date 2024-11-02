@@ -31,15 +31,17 @@
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
                             <section>
                                 <div class="example-button-row">
-                                    <button mat-stroked-button class="edit-button">Edit</button>
-                                    <button mat-stroked-button class="view-button">View</button>
-                                    <button mat-stroked-button class="delete-button">Delete</button>
+                                    <button mat-stroked-button class="edit-button" >Release</button>
                                 </div>
                             </section>
                         </td>
                     </tr>
                 }
                 </tbody>
+                
+                <tr class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
+                    <button mat-stroked-button class="edit-button" [routerLink] = "['add-reservation']">Add new reservation</button>
+                </tr>
             </table>
         </div>
     </div>

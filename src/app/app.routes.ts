@@ -25,13 +25,10 @@ export const routes: Routes = [
   {path: 'books/add-book', component: EditBookComponent},
   {path: 'books/edit-book/:id', component: EditBookComponent},
 
-  {
-    path: 'reservations', component: ReservationsComponent,
-    children: [
-      {path: "edit-reservation", component: EditReservationsComponent},
-      {path: "view-reservation", component: ViewReservationsComponent},
-    ]
-  },
+  {path: 'reservations', component: ReservationsComponent},
+  {path: 'reservations/add-reservation', component: EditReservationsComponent},
+  {path: "reservations/view-reservation", component: ViewReservationsComponent},
+
 
   {path: 'customers', component: CustomersComponent},
   {path: 'customers/edit-customer/:id', component: EditCustomersComponent},

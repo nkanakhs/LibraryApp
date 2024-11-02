@@ -5,11 +5,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { CustomDatePipe } from '../customDate.pipe';
 import { RouterLink } from '@angular/router';
+import { MatIcon, MatIconRegistry } from "@angular/material/icon";
+import { MatFormField } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule,CustomDatePipe,RouterLink],
+  imports: [MatButtonModule, MatDividerModule,CustomDatePipe,RouterLink,MatFormField,MatIcon,FormsModule],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css',
   providers: [CustomDatePipe]
@@ -18,6 +21,8 @@ export class BooksComponent {
 
   books : book[] = [];
   loading = true;
+  searchTerm = '';
+  filteredbooks: book[] = [];
 
   constructor(private customDatePipe: CustomDatePipe, private bookService: BookService){
 
@@ -43,6 +48,29 @@ export class BooksComponent {
       next: response => console.log(response),
       error: error => console.log(error)
     })
+  }
+
+  onSearch(){
+    if(this.searchTerm.length > 2)
+    {
+      // client side 
+      // this.bookService.getBooks().subscribe({
+      //   next: response => {
+      //     this.books = response.filter( book => book.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      //     )
+      //   },
+      //   complete: () => 
+      //     console.log(this.filteredbooks)
+      // })
+      
+      //  server side
+      this.bookService.getBooksWithParams(this.searchTerm).subscribe({
+        next: response => {
+          this.books = response
+        }
+      })
+    }
+
   }
 
 }

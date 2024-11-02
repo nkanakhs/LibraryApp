@@ -6,10 +6,14 @@
       </div>
     </div>
   } @else {
-  
+
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()">
+    
+
     <div class="container custom-container">
     <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
-      @for (book of books; track book; let idx = $index) {
+      @for (book of books; track book._id; let idx = $index) {
 
 
         <div class="col d-flex justify-content-center">
@@ -49,6 +53,6 @@
         </div>
         <tr class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
           <button mat-stroked-button class="edit-button" [routerLink] = "['add-book']">Add new Book</button>
-      </tr>
+        </tr>
       </div>
       }

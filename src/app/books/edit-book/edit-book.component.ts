@@ -60,8 +60,6 @@ export class EditBookComponent {
 
   onSubmit(){
     
-    console.log('name of the form:' +this.editbookForm.controls['name'].value)
-    console.log('status of the form:' + this.editbookForm.valid )
     if(this.book_id){ //on the edit book
       if(this.editbookForm.valid){
         this.book = {

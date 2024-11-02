@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { reservation } from '../Interfaces/reservation';
+import { postReservation, reservation } from '../Interfaces/reservation';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +14,9 @@ export class ReservationsService {
 
   getReservations(): Observable<reservation[]>{
     return this.http.get<reservation[]>(this.reservationsUrl)
+  }
+
+  postReservation(reservation: postReservation): Observable<any> {
+    return this.http.post(this.reservationsUrl , reservation)
   }
 }
