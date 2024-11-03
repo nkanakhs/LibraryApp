@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { customer } from '../Interfaces/customer';
@@ -18,6 +18,12 @@ export class CustomersService {
     //console.log('customers request')
     return this.http.get<customer[]>(this.customersUrl);
   }
+
+  // getCustomersWithParams(searchTerm: string, sortTerm:string): Observable<customer[]>{
+  //   console.log('customers request:' + searchTerm)
+  //   const baseParams = new HttpParams().set('search',searchTerm)
+  //   return this.http.get<customer[]>(this.customersUrl, {params:baseParams.set('sort', sortTerm)});
+  // }
 
   getCustomer( _id: string): Observable<customer>{
     //console.log('customers id:' + _id)

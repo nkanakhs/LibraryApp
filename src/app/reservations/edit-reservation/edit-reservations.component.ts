@@ -6,6 +6,7 @@ import { CustomersService } from '../../Services/customers.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { postReservation, reservation } from '../../Interfaces/reservation';
 import { ReservationsService } from '../../Services/reservations.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-reservation',
@@ -23,7 +24,8 @@ export class EditReservationsComponent {
 
   addReservationForm : FormGroup = new FormGroup({});
   
-  constructor(private bookService: BookService, private customerService: CustomersService, private reservationService : ReservationsService){
+  constructor(private bookService: BookService, private customerService: CustomersService, 
+              private reservationService : ReservationsService, private router: Router){
     this.addReservationForm = new FormGroup({
       book: new FormControl('', Validators.required ),
       customer: new FormControl('', Validators.required ),
@@ -59,17 +61,17 @@ export class EditReservationsComponent {
   onSubmit(){
     if(this.addReservationForm.valid){
       this.reservation = {
-        book_id: this.addReservationForm.controls['book'].value,
-        customer_id: this.addReservationForm.controls['customer'].value,
+        bookId: this.addReservationForm.controls['book'].value,
+        customerId: this.addReservationForm.controls['customer'].value,
         returnBy: this.addReservationForm.controls['returnedBy'].value
       }
-      console.log(this.reservation)
+      //console.log(this.reservation)
       this.reservationService.postReservation(this.reservation).subscribe({
         next: response => {
-          console.log("reservation submitted!" + response)
+          this.router.navigate(['/reservations'])
         },
         error: error =>{
-          console.log(error)
+          //console.log(error)
         }
       })
     }

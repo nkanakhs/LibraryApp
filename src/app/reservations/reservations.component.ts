@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { ReservationsService } from '../Services/reservations.service';
 import { reservation } from '../Interfaces/reservation';
 import { CustomDatePipe } from '../customDate.pipe';
@@ -85,4 +85,17 @@ export class ReservationsComponent {
     }
     }); 
   }
+
+  releaseReservation(reservation : reservation){
+    this.reservationsService.releaseReservation(reservation).subscribe({
+        next : response =>{},
+        error: error =>{},
+        complete: ()=>{
+          
+        }
+    })
+  }
+
+  
+  
 }

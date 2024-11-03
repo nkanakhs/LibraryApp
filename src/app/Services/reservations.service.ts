@@ -19,4 +19,8 @@ export class ReservationsService {
   postReservation(reservation: postReservation): Observable<any> {
     return this.http.post(this.reservationsUrl , reservation)
   }
+
+  releaseReservation(reservation:reservation): Observable<any>{
+    return this.http.post<any>(this.reservationsUrl + '/' + reservation._id + '/complete' , reservation)
+  }
 }

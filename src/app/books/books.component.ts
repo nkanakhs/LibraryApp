@@ -1,18 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BookService } from '../Services/book.service';
 import { book } from '../Interfaces/book';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { CustomDatePipe } from '../customDate.pipe';
 import { RouterLink } from '@angular/router';
-import { MatIcon, MatIconRegistry } from "@angular/material/icon";
+import { MatIcon } from "@angular/material/icon";
 import { MatFormField } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup,  ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule,CustomDatePipe,RouterLink,MatFormField,MatIcon,FormsModule],
+  imports: [MatButtonModule, MatDividerModule,CustomDatePipe,RouterLink,MatFormField,MatIcon,ReactiveFormsModule],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css',
   providers: [CustomDatePipe]
@@ -22,10 +26,26 @@ export class BooksComponent {
   books : book[] = [];
   loading = true;
   searchTerm = '';
+  sortTerm= '';
   filteredbooks: book[] = [];
+  modalService = inject(NgbModal);
+  searchBookForm : FormGroup = new FormGroup({});
+  searchSub ?: Subscription;
+  sortSub ?: Subscription;
 
-  constructor(private customDatePipe: CustomDatePipe, private bookService: BookService){
+  constructor(private customDatePipe: CustomDatePipe, private bookService: BookService,private snackBar: MatSnackBar){
+    this.searchBookForm = new FormGroup({
+      searchTerm: new FormControl(''),
+      sortTerm: new FormControl(''),
+    })
 
+    this.searchSub = this.searchBookForm.get('searchTerm')?.valueChanges.subscribe(() =>{
+      this.onSubmit()
+    })
+
+    this.sortSub = this.searchBookForm.get('sortTerm')?.valueChanges.subscribe(() =>{
+      this.onSubmit()
+    })
   }
 
   ngOnInit(){
@@ -46,31 +66,66 @@ export class BooksComponent {
   deleteBook(book : book){
     this.bookService.deleteBook(book).subscribe({
       next: response => console.log(response),
-      error: error => console.log(error)
+      error: error => console.log(error),
+      complete: () => {
+          this.showSuccess('Book deleted successfully')
+          this.loading = true
+          this.bookService.getBooks().subscribe(
+            (data: book[]) => {
+              this.books = data.map(x => ({
+                ...x,
+                createdOn: this.customDatePipe.transform(x.createdOn)
+              }))
+              this.loading = false
+          }); 
+      }
     })
   }
 
-  onSearch(){
-    if(this.searchTerm.length > 2)
-    {
-      // client side 
+  onSubmit() {
+    this.searchTerm = this.searchBookForm.controls['searchTerm'].value
+    this.sortTerm = this.searchBookForm.controls['sortTerm'].value
+    this.bookService.getBooksWithParams(this.searchTerm,this.sortTerm).subscribe({
+      next: response => {
+        this.books = response
+      }
+    })
+     // client side 
       // this.bookService.getBooks().subscribe({
       //   next: response => {
       //     this.books = response.filter( book => book.name.toLowerCase().includes(this.searchTerm.toLowerCase())
       //     )
       //   },
       //   complete: () => 
-      //     console.log(this.filteredbooks)
+      //     console.log(this.books)
       // })
-      
-      //  server side
-      this.bookService.getBooksWithParams(this.searchTerm).subscribe({
-        next: response => {
-          this.books = response
-        }
-      })
-    }
+  }
 
+  showSuccess(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,         
+      panelClass: ['success'], 
+      verticalPosition: 'top', 
+      horizontalPosition: 'right' 
+    });
+  }
+
+  openConfirmModal(book: book) {
+    const modalRef = this.modalService.open(ConfirmModalComponent);
+    modalRef.result.then(
+        (result) => {
+            this.deleteBook(book)
+            //console.log('Modal closed with:', result);  
+        },
+        (reason) => {
+           // console.log('Modal dismissed with:', reason);
+        }
+    );
+  }
+
+  onDestroy(){
+    this.sortSub?.unsubscribe();
+    this.searchSub?.unsubscribe();
   }
 
 }

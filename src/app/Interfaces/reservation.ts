@@ -11,7 +11,7 @@ export interface reservation{
 }
 
 export interface postReservation{
-    customer_id: string;
-    book_id: string;
+    customerId: string;
+    bookId: string;
     returnBy: Date;
 }

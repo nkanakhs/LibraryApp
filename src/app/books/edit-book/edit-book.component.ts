@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { book } from '../../Interfaces/book';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../Services/book.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-book',
@@ -21,7 +22,7 @@ export class EditBookComponent {
 
   editbookForm : FormGroup = new FormGroup({});
 
-  constructor(private route: ActivatedRoute, private bookService: BookService){
+  constructor(private route: ActivatedRoute, private bookService: BookService, private router: Router,private snackBar: MatSnackBar){
     this.editbookForm = new FormGroup({
       name: new FormControl('', [Validators.required , Validators.minLength(3), Validators.maxLength(15)]),
       author: new FormControl('', [Validators.required , Validators.minLength(3), Validators.maxLength(15)]),
@@ -71,10 +72,16 @@ export class EditBookComponent {
           type:this.editbookForm.controls['type'].value,
           createdOn: this.editbookForm.controls['createdOn'].value
         }
-        this.bookService.editBook(this.book).subscribe(data =>{
-          console.log(data)
-        }, error =>{
-          console.log(error)
+        this.bookService.editBook(this.book).subscribe({
+          next: response => {
+            console.log(response)
+          }, 
+          error: error =>{
+            console.log(error)
+          }, 
+          complete: () => {
+            this.showSuccess('Book edited successfully')
+          }
         });
       }
     }else{  //add new book
@@ -87,12 +94,29 @@ export class EditBookComponent {
           type:this.editbookForm.controls['type'].value,
           createdOn: this.editbookForm.controls['createdOn'].value
         }
-        this.bookService.addBook(this.book).subscribe(data =>{
-          console.log(data)
-        }, error =>{
-          console.log(error)
+        this.bookService.addBook(this.book).subscribe({
+          next: response => {
+            console.log(response)
+          }, 
+          error: error =>{
+            console.log(error)
+          }, 
+          complete: () => {
+            this.showSuccess('Book added successfully')
+            this.router.navigate(['/books'])
+          }
         });
       }
     }
   }
+
+  showSuccess(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,         
+      panelClass: ['success'], 
+      verticalPosition: 'top', 
+      horizontalPosition: 'right' 
+    });
+  }
+
 }

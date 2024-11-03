@@ -8,9 +8,22 @@
   } @else {
 
     <mat-icon matPrefix>search</mat-icon>
-    <input matInput placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()">
+    <form [formGroup]= "searchBookForm" (submit)= "onSubmit()">
+      <input formControlName = "searchTerm" matInput placeholder="Search...">
+      <select formControlName = "sortTerm">
+        <option value="asc">asc</option>
+        <option value="desc">desc</option>
+      </select>
+    <div class="text-center mb-4">
+      <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none 
+                  text-white font-bold py-2 px-4 rounded" 
+                  type="submit"
+                  >
+                  Search
+      </button>
+    </div>
+    </form>
     
-
     <div class="container custom-container">
     <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
       @for (book of books; track book._id; let idx = $index) {
@@ -42,7 +55,7 @@
                   <div class="example-button">
                     <button mat-stroked-button class="custom-button" [routerLink] = "['edit-book', book._id]">Edit</button>
                     <button mat-stroked-button class="custom-button" [routerLink] = "['view-book', book._id]">View</button>
-                    <button mat-stroked-button class="custom-button" (click)="deleteBook(book)">Delete</button>
+                    <button mat-stroked-button class="custom-button" (click)="openConfirmModal(book)">Delete</button>
                   </div>
               </div>
             </div>

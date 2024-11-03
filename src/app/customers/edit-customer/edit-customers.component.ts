@@ -2,14 +2,13 @@ import { Component, TemplateRef,ViewChild,inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomersService } from '../../Services/customers.service';
 import { customer } from '../../Interfaces/customer';
-import { FormControl, FormGroup, Validators, FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { ToastService } from '../../Services/toast-service';
-import { ToastsContainer } from "../../toast-container/toast-container.component";
+import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-customer',
   standalone: true,
-  imports: [ReactiveFormsModule, ToastsContainer],
+  imports: [ReactiveFormsModule],
   templateUrl: './edit-customers.component.html',
   styleUrl: './edit-customers.component.css'
 })
@@ -18,13 +17,10 @@ export class EditCustomersComponent {
   customer_id : string | null = null;
   customer !: customer;
   title : string = '';
-  // buttonDisabled: boolean = false;
-  toastService = inject(ToastService); 
-  @ViewChild('successTpl') successTpl!: TemplateRef<any>;
   
   editCustomerForm : FormGroup = new FormGroup({});
 
-  constructor(private route: ActivatedRoute, private customerService: CustomersService,private router: Router){
+  constructor(private route: ActivatedRoute, private customerService: CustomersService,private router: Router,private snackBar: MatSnackBar){
     this.editCustomerForm = new FormGroup({
       name: new FormControl('', [Validators.required , Validators.minLength(3), Validators.maxLength(15)]),
       surname: new FormControl('', [Validators.required , Validators.minLength(3), Validators.maxLength(15)]),
@@ -72,7 +68,7 @@ export class EditCustomersComponent {
         }
         this.customerService.editCustomer(this.customer).subscribe({
           next: response =>{ 
-            this.showSuccess(this.successTpl)
+            this.showSuccess("Customer's data changed successfully!")
             //console.log(response)
           },
           error: error => console.log(error)  
@@ -88,25 +84,26 @@ export class EditCustomersComponent {
         }
         this.customerService.addCustomer(this.customer).subscribe({
           next: response => {
-            this.showSuccess(this.successTpl),
-            this.router.navigate(['/customers'])
           },
-          error: error => console.log(error)  
+          error: error => {console.log(error)  
+          },
+          complete: () => {
+            this.showSuccess("Customer added successfully!")
+            this.router.navigate(['/customers'])
+          }
         });
       }
     }
   }
 
-  showSuccess(template: TemplateRef<any>) {
-    this.toastService.show({ template, classname: 'custom-toast text-light' });
+  showSuccess(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,         
+      panelClass: ['success'], 
+      verticalPosition: 'top', 
+      horizontalPosition: 'right' 
+    });
   }
   
-  showError(template: TemplateRef<any>) {
-    this.toastService.show({ template, classname: 'bg-danger text-light' });
-  }
-
-  ngOnDestroy(): void {
-		this.toastService.clear();
-	}
 
 }

@@ -5,6 +5,15 @@
         </div>
     </div>
 }@else {
+
+    <mat-icon matPrefix>search</mat-icon>
+    <input [(ngModel)] = "searchTerm" matInput placeholder="Search..." (ngModelChange)="onSubmit()">
+    <select [(ngModel)] = "sortTerm" (ngModelChange)="onSubmit()">
+    <option value="asc">asc</option>
+    <option value="desc">desc</option>
+    </select>
+    
+
     <div class="container text-center mt-3">
         <div class="table-responsive rounded-4 border-3 color-bg-custom">
             <table class="table table-hover custom-font">
