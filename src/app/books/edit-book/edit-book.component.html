@@ -1,122 +1,86 @@
-
-
 <div class="container text-center mt-3">
-    <div class="max-w-lg rounded overflow-hidden shadow-lg">
-      <div class="title-card mb-5 mt-4">
-        {{title}}
-      </div> 
-      <div class="card-body px-5">
-        <form class="w-full px-5" [formGroup]= "editbookForm" (submit)= "onSubmit()">
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full px-3 mb-6 mb-0">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                          Book name
-                      </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 
-                                      rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                                      type="text" formControlName = "name" />
-                      @if (editbookForm.controls['name'].errors?.['required']&& 
-                            (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty))
-                      {
-                        <p class="text-red-500 text-xs italic"> Name field is required </p>
-                      }
-                      @if (editbookForm.controls['name'].errors?.['minlength']&& 
-                            (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty))
-                      {
-                        <p class="text-red-500 text-xs italic"> Name must be at least 3 digits </p>
-                      }
-                      @if (editbookForm.controls['name'].errors?.['maxlength']&& 
-                            (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty))
-                      {
-                        <p class="text-red-500 text-xs italic">Name cannot be longer than 15 digits </p>
-                      }
-                    </div>
-                </div>
-                <div class="flex flex-wrap -mx-3 mb-6">
-                  <div class="w-full px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                            Author Name
-                        </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none 
-                                        focus:bg-white focus:border-gray-500" 
-                                    type="text" formControlName = "author" />
-                        @if (editbookForm.controls['author'].errors?.['required']&& 
-                              (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty))
-                        {
-                          <p class="text-red-500 text-xs italic"> author field is required</p>
-                        }
-                        @if (editbookForm.controls['author'].errors?.['minlength'] && 
-                              (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty))
-                        {
-                          <p class="text-red-500 text-xs italic"> author must be at least 3 digits </p>
-                        }
-                        @if (editbookForm.controls['author'].errors?.['maxlength'] && 
-                              (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty))
-                        {
-                          <p class="text-red-500 text-xs italic"> author cannot be longer than 15 digits </p>
-                        }
-                  </div>
-                </div>
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Type:</label>
-                <select name="cars" formControlName="type">
-                    @for(type of types; track type;){
-                        <option value="{{type}}">{{type}}</option>
-                    }
-                </select> 
-                @if (editbookForm.controls['type'].errors?.['required'] && 
-                          (editbookForm.controls['type'].touched || editbookForm.controls['type'].dirty))
-                {
-                  <p class="text-red-500 text-xs italic"> Type of the book is required </p>
-                }
-              </div>
-            </div>
-            <div  class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Available:</label>
-                <input type="checkbox" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight
-                focus:outline-none focus:bg-white focus:border-gray-500" formControlName = "available">
-                @if (editbookForm.controls['available'].errors?.['required'] && (editbookForm.controls['year'].touched || editbookForm.controls['year'].dirty) )
-                {
-                  <p class="text-red-500 text-xs italic"> Availability is required </p>
-                }
-              </div>
-            </div>
-            <div  class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Year:</label>
-                <input type="number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight
-                focus:outline-none focus:bg-white focus:border-gray-500" formControlName = "year">
-                @if (editbookForm.controls['year'].errors?.['required'] && (editbookForm.controls['year'].touched || editbookForm.controls['year'].dirty) )
-                {
-                  <p class="text-red-500 text-xs italic"> Year is required </p>
-                }
-              </div>
-            </div>
-            <div  class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Created On:</label>
-                <input type="date" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight
-                focus:outline-none focus:bg-white focus:border-gray-500" formControlName = "createdOn">
-                @if (editbookForm.controls['createdOn'].errors?.['required'] && (editbookForm.controls['createdOn'].touched || editbookForm.controls['createdOn'].dirty) )
-                {
-                  <p class="text-red-500 text-xs italic"> Date of creation is required</p>
-                }
-              </div>
-            </div>
-            
-            <div class="text-center mb-4">
-                <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none 
-                            text-white font-bold py-2 px-4 rounded" 
-                            type="submit"
-                            [disabled]="editbookForm.invalid"
-                            >
-                            Upload
-                </button>
-            </div>
-  
-        </form>
-      </div>
+  <div class="card mx-auto" style="max-width: 600px;">
+    <div class="card-header">
+      {{title}}
+    </div>
+    <div class="card-body">
+      <form [formGroup]="editbookForm" (submit)="onSubmit()">
+
+        <div class="mb-3">
+          <label class="form-label">Book Name:</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="name"
+                 placeholder="Enter book name"
+                 [ngClass]="{'is-invalid': editbookForm.controls['name'].errors && (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty)}"/>
+          <div
+            *ngIf="editbookForm.controls['name'].errors && (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty)">
+            <p *ngIf="editbookForm.controls['name'].errors?.['required']" class="text-danger">Name field is required</p>
+            <p *ngIf="editbookForm.controls['name'].errors?.['minlength']" class="text-danger">Name must be at least 3
+              characters</p>
+            <p *ngIf="editbookForm.controls['name'].errors?.['maxlength']" class="text-danger">Name cannot be longer
+              than 15 characters</p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Author Name:</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="author"
+                 placeholder="Enter author name"
+                 [ngClass]="{'is-invalid': editbookForm.controls['author'].errors && (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty)}"/>
+          <div
+            *ngIf="editbookForm.controls['author'].errors && (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty)">
+            <p *ngIf="editbookForm.controls['author'].errors?.['required']" class="text-danger">Author field is
+              required</p>
+            <p *ngIf="editbookForm.controls['author'].errors?.['minlength']" class="text-danger">Author must be at least
+              3 characters</p>
+            <p *ngIf="editbookForm.controls['author'].errors?.['maxlength']" class="text-danger">Author cannot be longer
+              than 15 characters</p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Type:</label>
+          <select class="form-select"
+                  formControlName="type"
+                  [ngClass]="{'is-invalid': editbookForm.controls['type'].errors && (editbookForm.controls['type'].touched || editbookForm.controls['type'].dirty)}">
+            <option value="" disabled selected>Select book type</option>
+            <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+          </select>
+          <div
+            *ngIf="editbookForm.controls['type'].errors && (editbookForm.controls['type'].touched || editbookForm.controls['type'].dirty)">
+            <p *ngIf="editbookForm.controls['type'].errors?.['required']" class="text-danger">Type of the book is
+              required</p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Year:</label>
+          <input type="number"
+                 class="form-control"
+                 formControlName="year"
+                 placeholder="Enter publication year"
+                 [ngClass]="{'is-invalid': editbookForm.controls['year'].errors && (editbookForm.controls['year'].touched || editbookForm.controls['year'].dirty)}"/>
+          <div
+            *ngIf="editbookForm.controls['year'].errors && (editbookForm.controls['year'].touched || editbookForm.controls['year'].dirty)">
+            <p *ngIf="editbookForm.controls['year'].errors?.['required']" class="text-danger">Year is required</p>
+          </div>
+        </div>
+
+        <div class="text-center mb-4">
+          <button [ngClass]="{ 'disabled-button': isDisabled }"
+                  class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none
+                   text-white font-bold py-2 px-4 rounded"
+                  type="submit"
+                  [disabled]="editbookForm.invalid">
+            Upload
+          </button>
+        </div>
+
+
+      </form>
     </div>
   </div>
+</div>

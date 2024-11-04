@@ -4,20 +4,22 @@ import { CustomersService } from '../../Services/customers.service';
 import { customer } from '../../Interfaces/customer';
 import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-edit-customer',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './edit-customers.component.html',
   styleUrl: './edit-customers.component.css'
 })
 export class EditCustomersComponent {
+  isDisabled: boolean = false;
 
   customer_id : string | null = null;
   customer !: customer;
   title : string = '';
-  
+
   editCustomerForm : FormGroup = new FormGroup({});
 
   constructor(private route: ActivatedRoute, private customerService: CustomersService,private router: Router,private snackBar: MatSnackBar){
@@ -30,7 +32,7 @@ export class EditCustomersComponent {
   }
 
   ngOnInit() {
-    
+
     this.customer_id = this.route.snapshot.params["id"];
 
     if (this.customer_id){  // we are in the edit customer mode
@@ -39,12 +41,12 @@ export class EditCustomersComponent {
       this.customerService.getCustomer(this.customer_id).subscribe((data) =>{
 
         this.customer = data;
-        
+
         this.editCustomerForm.controls['name'].setValue(this.customer.name);
         this.editCustomerForm.controls['surname'].setValue(this.customer.surname);
         this.editCustomerForm.controls['email'].setValue(this.customer.email);
         this.editCustomerForm.controls['phoneNumber'].setValue(this.customer.phoneNumber);
-        
+
       })
     }else{ // add customer mode
       // this.buttonDisabled = true;
@@ -54,7 +56,7 @@ export class EditCustomersComponent {
   }
 
   onSubmit(){
-    
+
     console.log('name of the form:' +this.editCustomerForm.controls['name'].value)
     console.log('status of the form:' + this.editCustomerForm.valid )
     if(this.customer_id){ //on the edit customer
@@ -67,11 +69,11 @@ export class EditCustomersComponent {
           phoneNumber: this.editCustomerForm.controls['phoneNumber'].value
         }
         this.customerService.editCustomer(this.customer).subscribe({
-          next: response =>{ 
+          next: response =>{
             this.showSuccess("Customer's data changed successfully!")
             //console.log(response)
           },
-          error: error => console.log(error)  
+          error: error => console.log(error)
         });
       }
     }else{  //add new customer
@@ -85,7 +87,7 @@ export class EditCustomersComponent {
         this.customerService.addCustomer(this.customer).subscribe({
           next: response => {
           },
-          error: error => {console.log(error)  
+          error: error => {console.log(error)
           },
           complete: () => {
             this.showSuccess("Customer added successfully!")
@@ -98,12 +100,12 @@ export class EditCustomersComponent {
 
   showSuccess(message: string) {
     this.snackBar.open(message, 'Close', {
-      duration: 3000,         
-      panelClass: ['success'], 
-      verticalPosition: 'top', 
-      horizontalPosition: 'right' 
+      duration: 3000,
+      panelClass: ['success'],
+      verticalPosition: 'top',
+      horizontalPosition: 'right'
     });
   }
-  
+
 
 }
