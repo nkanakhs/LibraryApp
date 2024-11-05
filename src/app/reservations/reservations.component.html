@@ -20,9 +20,9 @@
                     </tr>
                 </thead>
                 <tbody >
-                @for(reservation of reservations; track idx; let idx= $index;){
+                @for(reservation of paginatedReservations; track idx; let idx= $index;){
                     <tr>
-                        <th class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{idx + 1 }}</th>
+                        <th class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{idx + 1 + (currentPage -1)*itemsPerPage}}</th>
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.book.name}}</td>
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.customer.name}} {{reservation.customer.surname}}</td>
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.status}}</td>
@@ -38,11 +38,19 @@
                     </tr>
                 }
                 </tbody>
-                
-                <tr class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
-                    <button mat-stroked-button class="edit-button" [routerLink] = "['add-reservation']">Add new reservation</button>
-                </tr>
             </table>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <button mat-stroked-button class="edit-button ms-3" [routerLink] = "['add-reservation']">Add new reservation</button>
+                <div class="pagination d-flex  align-items-center me-3">
+                    <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-primary me-2">
+                    Previous
+                    </button>
+                    <span>Page {{ currentPage }} of {{(reservations.length / itemsPerPage) | ceil}}</span>
+                    <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= reservations.length" class="btn btn-primary ms-2">
+                    Next
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 }

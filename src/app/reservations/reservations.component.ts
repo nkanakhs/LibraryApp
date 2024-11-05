@@ -7,11 +7,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { RouterLink } from '@angular/router';
 import { customer } from '../Interfaces/customer';
 import { CustomersService } from '../Services/customers.service';
+import { CeilPipe } from "../ceil.pipe";
 
 @Component({
   selector: 'app-reservations',
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule,CustomDatePipe, RouterLink],
+  imports: [MatButtonModule, MatDividerModule, CustomDatePipe, RouterLink, CeilPipe],
   templateUrl: './reservations.component.html',
   styleUrl: './reservations.component.css',
   providers: [CustomDatePipe]
@@ -21,6 +22,8 @@ export class ReservationsComponent {
   loading = true;
   reservations: reservation[] = [];
   customers: customer[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
 
   constructor(private customDatePipe: CustomDatePipe, private reservationsService: ReservationsService, private customerService: CustomersService){
 
@@ -84,6 +87,23 @@ export class ReservationsComponent {
       this.loading = false;
     }
     }); 
+  }
+
+  get paginatedReservations() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.reservations.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  nextPage() {
+    if (this.currentPage * this.itemsPerPage < this.reservations.length) {
+      this.currentPage++;
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
   }
 
   releaseReservation(reservation : reservation){

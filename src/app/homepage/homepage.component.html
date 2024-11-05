@@ -19,9 +19,9 @@
                     </tr>
                 </thead>
                 <tbody >
-                @for(book of availableBooks; track book;let idx=$index){
+                @for(book of paginatedBooks; track book;let idx=$index){
                     <tr>
-                        <th class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{idx + 1 }}</th>
+                        <th class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{(currentPage-1)*itemsPerPage + idx + 1 }}</th>
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{book.name}}</td>
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{book.year}}</td>
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{book.type}}</td>
@@ -31,6 +31,18 @@
                 }
                 </tbody>
             </table>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="ms-3"></div>
+                <div class="pagination d-flex  align-items-center me-3">
+                    <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-primary me-2">
+                    Previous
+                    </button>
+                    <span>Page {{ currentPage }} of {{(availableBooks.length / itemsPerPage) | ceil}}</span>
+                    <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= availableBooks.length" class="btn btn-primary ms-2">
+                    Next
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 }

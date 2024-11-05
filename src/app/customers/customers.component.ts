@@ -7,9 +7,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CeilPipe } from "../ceil.pipe";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-customers',
@@ -26,13 +27,26 @@ export class CustomersComponent {
   searchCustomerForm : FormGroup = new FormGroup({})
   searchTerm: string = '';
   sortTerm: string = 'asc';
+  searchSub ?: Subscription;
+  sortSub ?: Subscription;
 
   
   currentPage: number = 1;
   itemsPerPage: number = 6;
 
   constructor(private customerService: CustomersService,private snackBar: MatSnackBar){
+    this.searchCustomerForm = new FormGroup({
+      searchTerm: new FormControl(''),
+      sortTerm: new FormControl(''),
+    })
     
+    this.searchSub = this.searchCustomerForm.get('searchTerm')?.valueChanges.subscribe(() =>{
+      this.onSubmit()
+    })
+
+    this.sortSub = this.searchCustomerForm.get('sortTerm')?.valueChanges.subscribe(() =>{
+      this.onSubmit()
+    })
   }
 
   ngOnInit(){
@@ -83,6 +97,9 @@ export class CustomersComponent {
   }
 
   onSubmit() {
+    
+    this.searchTerm = this.searchCustomerForm.controls['searchTerm'].value
+    this.sortTerm = this.searchCustomerForm.controls['sortTerm'].value
     //client
     this.customerService.getCustomers().subscribe({
       next: response => {
@@ -95,7 +112,7 @@ export class CustomersComponent {
     })
   }
 
-  get paginatedBooks() {
+  get paginatedCustomers() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     return this.customers.slice(startIndex, startIndex + this.itemsPerPage);
   }

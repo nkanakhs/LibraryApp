@@ -1,7 +1,7 @@
  .navbar{
     opacity: 0.9;
-   background-color: transparent;
-   justify-content: center;
+   background-color: #eee !important;
+   justify-content: center !important;
 }
 
 .img-log-c{
@@ -13,3 +13,5 @@
 .custom-visible {
     visibility: visible !important; /* Override the collapse class */
   }
+
+
