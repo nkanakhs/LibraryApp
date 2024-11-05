@@ -53,4 +53,9 @@
             </table>
         </div>
     </div>
+    <div class="pagination">
+        <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+        <span>Page {{currentPage}} of {{ (customers.length / itemsPerPage) | ceil}}</span>
+        <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= customers.length">Next</button>
+      </div>
 }

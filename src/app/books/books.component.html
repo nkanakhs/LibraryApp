@@ -6,23 +6,32 @@
   </div>
 } @else {
   <div class="main-container d-flex">
-    <div class="left-panel">
-      <form [formGroup]= "searchBookForm" >
-        <div class="search d-flex align-items-center p-2 mb-4 mt-3">
-          <div class="icon me-2"><i class="bi bi-search"></i></div>
-          <input type="text" formControlName = "searchTerm" placeholder="Search..." >
+    <div class="left-column">
+      <div class="left-panel">
+        <form [formGroup]= "searchBookForm" >
+          <div class="search d-flex align-items-center p-2 mb-4 mt-3">
+            <div class="icon me-2"><i class="bi bi-search"></i></div>
+            <input type="text" formControlName = "searchTerm" placeholder="Search..." >
+          </div>
+          <select class="sort-select" formControlName = "sortTerm">
+            <option value="" disabled selected>Sort by</option>
+            <option value="asc">asc</option>
+            <option value="desc">desc</option>
+          </select>
+        </form>
+        <button mat-stroked-button class="edit-button" [routerLink] = "['add-book']">Add new Book</button>
+      </div>
+      <div class="bottom-left-panel mt-2">
+        <div class="pagination">
+          <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+          <span>Page {{currentPage}} of {{ (books.length / itemsPerPage) | ceil}}</span>
+          <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= books.length">Next</button>
         </div>
-        <select class="sort-select" formControlName = "sortTerm">
-          <option value="" disabled selected>Sort by</option>
-          <option value="asc">asc</option>
-          <option value="desc">desc</option>
-        </select>
-      </form>
-      <button mat-stroked-button class="edit-button " [routerLink] = "['add-book']">Add new Book</button>
+      </div>
     </div>
     <div class="right-panel">
-      <div class="container custom-container">
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+      <div class="custom-container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
           @for (book of paginatedBooks; track book._id; let idx = $index) {
             <div class="col d-flex justify-content-center">
               <div class="flip-card-container ">
@@ -57,11 +66,7 @@
             </div>
 
           }
-          <div class="pagination">
-            <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-            <span>Page {{currentPage}} of {{ (books.length / itemsPerPage) }}</span>
-            <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= books.length">Next</button>
-          </div>
+          
         </div>
       </div>
     </div>

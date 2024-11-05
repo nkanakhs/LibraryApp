@@ -7,11 +7,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { postReservation, reservation } from '../../Interfaces/reservation';
 import { ReservationsService } from '../../Services/reservations.service';
 import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-edit-reservation',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './edit-reservations.component.html',
   styleUrl: './edit-reservations.component.css'
 })

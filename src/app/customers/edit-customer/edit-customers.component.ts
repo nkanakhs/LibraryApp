@@ -4,12 +4,12 @@ import { CustomersService } from '../../Services/customers.service';
 import { customer } from '../../Interfaces/customer';
 import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {NgClass} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-edit-customer',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass,NgIf],
   templateUrl: './edit-customers.component.html',
   styleUrl: './edit-customers.component.css'
 })

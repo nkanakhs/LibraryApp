@@ -13,13 +13,22 @@
                  formControlName="name"
                  placeholder="Enter book name"
                  [ngClass]="{'is-invalid': editbookForm.controls['name'].errors && (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty)}"/>
-          <div
-            *ngIf="editbookForm.controls['name'].errors && (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty)">
-            <p *ngIf="editbookForm.controls['name'].errors?.['required']" class="text-danger">Name field is required</p>
-            <p *ngIf="editbookForm.controls['name'].errors?.['minlength']" class="text-danger">Name must be at least 3
-              characters</p>
-            <p *ngIf="editbookForm.controls['name'].errors?.['maxlength']" class="text-danger">Name cannot be longer
-              than 15 characters</p>
+          <div>
+            @if (editbookForm.controls['name'].errors?.['required']&& 
+                            (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty)){
+                <p class="text-danger">Name field is required</p>
+              } 
+              @if (editbookForm.controls['name'].errors?.['minlength']&& 
+                            (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty)){
+                <p class="text-danger">Name must be at least 3 characters</p>
+              } 
+              @if (editbookForm.controls['name'].errors?.['maxlength']&& 
+                            (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty)){
+                <p class="text-danger">Name cannot be longer
+                  than 15 characters</p>
+              } 
+            
+            
           </div>
         </div>
 
@@ -30,15 +39,21 @@
                  formControlName="author"
                  placeholder="Enter author name"
                  [ngClass]="{'is-invalid': editbookForm.controls['author'].errors && (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty)}"/>
-          <div
-            *ngIf="editbookForm.controls['author'].errors && (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty)">
-            <p *ngIf="editbookForm.controls['author'].errors?.['required']" class="text-danger">Author field is
-              required</p>
-            <p *ngIf="editbookForm.controls['author'].errors?.['minlength']" class="text-danger">Author must be at least
-              3 characters</p>
-            <p *ngIf="editbookForm.controls['author'].errors?.['maxlength']" class="text-danger">Author cannot be longer
-              than 15 characters</p>
-          </div>
+                 @if (editbookForm.controls['author'].errors?.['required']&& 
+                 (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty))
+           {
+             <p class="text-danger"> author field is required</p>
+           }
+           @if (editbookForm.controls['author'].errors?.['minlength'] && 
+                 (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty))
+           {
+             <p class="text-danger"> author must be at least 3 digits </p>
+           }
+           @if (editbookForm.controls['author'].errors?.['maxlength'] && 
+                 (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty))
+           {
+             <p class="text-danger"> author cannot be longer than 15 digits </p>
+           }
         </div>
 
         <div class="mb-3">
@@ -48,13 +63,19 @@
                   [ngClass]="{'is-invalid': editbookForm.controls['type'].errors && (editbookForm.controls['type'].touched || editbookForm.controls['type'].dirty)}">
             <option value="" disabled selected>Select book type</option>
             <option *ngFor="let type of types" [value]="type">{{ type }}</option>
-          </select>
-          <div
-            *ngIf="editbookForm.controls['type'].errors && (editbookForm.controls['type'].touched || editbookForm.controls['type'].dirty)">
-            <p *ngIf="editbookForm.controls['type'].errors?.['required']" class="text-danger">Type of the book is
-              required</p>
-          </div>
+            <select name="cars" formControlName="type">
+              @for(type of types; track type;){
+                  <option value="{{type}}">{{type}}</option>
+              }
+            </select> 
+              @if (editbookForm.controls['type'].errors?.['required'] && 
+                        (editbookForm.controls['type'].touched || editbookForm.controls['type'].dirty))
+              {
+                <p class="text-danger"> Type of the book is required </p>
+              }
+              </select>
         </div>
+
 
         <div class="mb-3">
           <label class="form-label">Year:</label>
@@ -63,22 +84,39 @@
                  formControlName="year"
                  placeholder="Enter publication year"
                  [ngClass]="{'is-invalid': editbookForm.controls['year'].errors && (editbookForm.controls['year'].touched || editbookForm.controls['year'].dirty)}"/>
-          <div
-            *ngIf="editbookForm.controls['year'].errors && (editbookForm.controls['year'].touched || editbookForm.controls['year'].dirty)">
-            <p *ngIf="editbookForm.controls['year'].errors?.['required']" class="text-danger">Year is required</p>
+          <div>
+            @if (editbookForm.controls['year'].errors?.['required'] && (editbookForm.controls['year'].touched || editbookForm.controls['year'].dirty) )
+            {
+              <p class="text-danger"> Year is required </p>
+            }
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="form-check d-flex align-items-center ">
+            <input type="checkbox"
+                    class="form-check-input me-2"
+                    formControlName="available">
+                    @if (editbookForm.controls['available'].errors?.['required'] && (editbookForm.controls['year'].touched || editbookForm.controls['year'].dirty) )
+                  {
+                    <p class="text-danger"> Availability is required </p>
+                  }
+                  
+            <label class="form-check-label">Available</label>
           </div>
         </div>
 
         <div class="text-center mb-4">
-          <button [ngClass]="{ 'disabled-button': isDisabled }"
+          <button 
                   class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none
-                   text-white font-bold py-2 px-4 rounded"
+                   font-bold py-2 px-4 rounded"
                   type="submit"
                   [disabled]="editbookForm.invalid">
             Upload
           </button>
         </div>
 
+        
 
       </form>
     </div>

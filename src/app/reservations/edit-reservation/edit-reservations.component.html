@@ -1,20 +1,20 @@
 
 
 <div class="container text-center mt-3">
-    <div class="max-w-lg rounded overflow-hidden shadow-lg">
-      <div class="title-card mb-5 mt-4">
+    <div class="card mx-auto" style="max-width: 600px;">
+      <div class="card-header">
         {{title}}
       </div> 
-      <div class="card-body px-5">
-        <form class="w-full px-5" [formGroup]= "addReservationForm" (submit)= "onSubmit()">
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full px-3 mb-6 mb-0">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+      <div class="card-body">
+        <form [formGroup]= "addReservationForm" (submit)= "onSubmit()">
+                <div class="mb-3">
+                      <label class="form-label">
                           Book name
                       </label>
-                        <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 
-                                      rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                                      type="text" formControlName = "book">
+                        <select class="form-select" 
+                                      type="text" formControlName = "book"
+                                      [ngClass]="{'is-invalid': addReservationForm.controls['book'].errors && (addReservationForm.controls['book'].touched || addReservationForm.controls['book'].dirty)}">
+                        
                         @for(book of books; track book._id;){
                                 <option value="{{book._id}}">{{book.name}}</option>
                         } 
@@ -23,18 +23,16 @@
                       @if (addReservationForm.controls['book'].errors?.['required']&& 
                             (addReservationForm.controls['book'].touched || addReservationForm.controls['book'].dirty))
                       {
-                        <p class="text-red-500 text-xs italic"> Book field is required </p>
+                        <p class="text-danger"> Book field is required </p>
                       }
-                    </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 mb-6">
-                  <div class="w-full px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                <div class="mb-3">
+                        <label class="form-label">
                             Customer
                         </label>
-                        <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 
-                                      rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                                      type="text" formControlName = "customer">
+                        <select class="form-select" 
+                                      type="text" formControlName = "customer"
+                                      [ngClass]="{'is-invalid': addReservationForm.controls['customer'].errors && (addReservationForm.controls['customer'].touched || addReservationForm.controls['customer'].dirty)}">
                         @for(customer of customers; track customer._id;){
                                 <option value="{{customer._id}}">{{customer.name}} {{customer.surname}}</option>
                         } 
@@ -42,25 +40,21 @@
                         @if (addReservationForm.controls['customer'].errors?.['required']&& 
                               (addReservationForm.controls['customer'].touched || addReservationForm.controls['customer'].dirty))
                         {
-                          <p class="text-red-500 text-xs italic"> Customer field is required</p>
+                          <p class="text-danger"> Customer field is required</p>
                         }
-                  </div>
                 </div>
-            <div  class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Returned By:</label>
-                <input type="date" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight
-                focus:outline-none focus:bg-white focus:border-gray-500" formControlName = "returnedBy">
+            <div  class="mb-3">
+                <label class="form-label">Returned By:</label>
+                <input type="date" class="form-control" formControlName = "returnedBy">
                 @if (addReservationForm.controls['returnedBy'].errors?.['required'] && (addReservationForm.controls['returnedBy'].touched || addReservationForm.controls['returnedBy'].dirty) )
                 {
-                  <p class="text-red-500 text-xs italic"> Date of creation is required</p>
+                  <p class="text-danger"> Date of creation is required</p>
                 }
-              </div>
             </div>
             
             <div class="text-center mb-4">
                 <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none 
-                            text-white font-bold py-2 px-4 rounded" 
+                            font-bold py-2 px-4 rounded" 
                             type="submit"
                             [disabled]="addReservationForm.invalid"
                             >

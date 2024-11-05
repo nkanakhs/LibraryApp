@@ -1,8 +1,11 @@
 
 html, body { height: 100%; }
 body { margin: 0;
-  background: linear-gradient(to left, #FFDAB9, #ffc684);    background-size: cover;
-    font-family: Roboto, "Helvetica Neue", sans-serif; }
+  background: linear-gradient(to left, #FFDAB9, #ffc684);  
+    background-size: cover;
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+
+  }
 
 .title-card{
     color: red ;

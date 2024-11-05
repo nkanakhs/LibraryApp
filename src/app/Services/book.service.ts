@@ -29,6 +29,7 @@ export class BookService {
   
 
   editBook(book: book): Observable<book>{
+    console.log(book.available)
     return this.http.put<book>(this.specificBookUrl + book._id , book);
   }
 

@@ -12,30 +12,6 @@
 
 
 /* .flip-card-container */
-.flip-card-container {
-  --hue: 150;
-  --primary: hsl(var(--hue), 50%, 50%);
-  --white-1: hsl(0, 0%, 90%);
-  --white-2: hsl(0, 0%, 80%);
-  --dark: hsl(var(--hue), 25%, 10%);
-  --grey: hsl(0, 0%, 50%);
-
-  width: 240px;
-  height: 400px;
-  margin: 40px;
-
-  perspective: 1000px;
-}
-
-/* .flip-card */
-.flip-card {
-  width: inherit;
-  height: inherit;
-
-  position: relative;
-  transform-style: preserve-3d;
-  transition: .6s .1s;
-}
 
 /* hover and focus-within states */
 .flip-card-container:hover .flip-card,
@@ -370,12 +346,6 @@ button:focus+.design-container {
   display: block;
 }
 
-.custom-container{
-  background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
-  backdrop-filter: blur(3px); /* Adjust blur to preference */
-  border-radius: 8px; /* Optional: softens the edges */
-}
-
 
 .search {
   display: flex;
@@ -398,24 +368,6 @@ button:focus+.design-container {
   background-color: transparent;
 }
 
-/*
-.sort-select {
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  background-color: #F5F5F5;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  color: #2A2A2E;
-  border-radius: 16px;
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
-  cursor: pointer;
-} */
-
-
 
 .sort-select {
   width: 100%;
@@ -434,6 +386,7 @@ button:focus+.design-container {
 .left-panel {
   flex: 1;
   max-width: 250px;
+  height: 270px;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -441,7 +394,80 @@ button:focus+.design-container {
 
 .right-panel {
   flex: 5;
-  padding: 20px;
+  padding: 5px;
+  height: 650px;
   background-color: #ffffff;
   border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.bottom-left-panel {
+  flex: 1;
+  height: 120px; /* Remaining height to fit below the top left panel */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.flip-card-container {
+  --hue: 150;
+  --primary: hsl(var(--hue), 50%, 50%);
+  --white-1: hsl(0, 0%, 90%);
+  --white-2: hsl(0, 0%, 80%);
+  --dark: hsl(var(--hue), 25%, 10%);
+  --grey: hsl(0, 0%, 50%);
+
+  width: 190px;
+  height: 300px;
+  margin: 10px;
+
+  perspective: 1000px;
+}
+
+/* .flip-card */
+.flip-card {
+  width: inherit;
+  height: inherit;
+
+  position: relative;
+  transform-style: preserve-3d;
+  transition: .6s .1s;
+}
+
+
+.custom-container{
+  
+  background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
+  backdrop-filter: blur(3px); /* Adjust blur to preference */
+  border-radius: 8px; /* Optional: softens the edges */
+}
+
+
+.pagination {
+  display: flex;
+  gap: 10px; /* Space between buttons and text */
+  align-items: center;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 14px;
+  color: #333;
 }

@@ -12,11 +12,12 @@ import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { CeilPipe } from "../ceil.pipe";
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule,CustomDatePipe,RouterLink,MatFormField,MatIcon,ReactiveFormsModule],
+  imports: [MatButtonModule, MatDividerModule, CustomDatePipe, RouterLink, MatFormField, MatIcon, ReactiveFormsModule, CeilPipe],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css',
   providers: [CustomDatePipe]

@@ -1,19 +1,18 @@
 import {Component, inject} from '@angular/core';
 import {book} from '../../Interfaces/book';
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BookService} from '../../Services/book.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {FloatLabelType, MatFormField, MatLabel} from '@angular/material/form-field';
+import { MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {MatIcon} from '@angular/material/icon';
-import {toSignal} from '@angular/core/rxjs-interop';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-edit-book',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormField, MatSelect, MatOption, MatIcon, MatLabel, NgIf, NgForOf, NgClass],
+  imports: [ReactiveFormsModule, MatFormField, MatSelect, MatOption, MatIcon, MatLabel,  NgForOf, NgClass],
   templateUrl: './edit-book.component.html',
   styleUrl: './edit-book.component.css'
 })
@@ -46,6 +45,7 @@ export class EditBookComponent {
   ngOnInit() {
 
     this.book_id = this.route.snapshot.params["id"];
+    const now = new Date();
 
     if (this.book_id) {  // we are in the edit book mode
 
@@ -58,11 +58,12 @@ export class EditBookComponent {
         this.editbookForm.controls['author'].setValue(this.book.author);
         this.editbookForm.controls['type'].setValue(this.book.type);
         this.editbookForm.controls['year'].setValue(this.book.year);
-        this.editbookForm.controls['createdOn'].setValue(this.book.createdOn);
+        this.editbookForm.controls['available'].setValue(this.book.available);
+        this.editbookForm.controls['createdOn'].setValue(now);
 
       })
     } else { // add book mode
-      // this.buttonDisabled = true;
+      this.editbookForm.controls['createdOn'].setValue(now);
       this.title = 'Add book';
     }
 
@@ -72,6 +73,7 @@ export class EditBookComponent {
 
     if (this.book_id) { //on the edit book
       if (this.editbookForm.valid) {
+        console.log(this.editbookForm.controls['available'].value)
         this.book = {
           _id: this.book_id,
           name: this.editbookForm.controls['name'].value,

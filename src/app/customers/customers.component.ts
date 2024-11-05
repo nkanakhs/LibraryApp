@@ -9,11 +9,12 @@ import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CeilPipe } from "../ceil.pipe";
 
 @Component({
   selector: 'app-customers',
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule, RouterLink,MatIcon,ReactiveFormsModule,FormsModule],
+  imports: [MatButtonModule, MatDividerModule, RouterLink, MatIcon, ReactiveFormsModule, FormsModule, CeilPipe],
   templateUrl: './customers.component.html',
   styleUrl: './customers.component.css'
 })
@@ -25,6 +26,10 @@ export class CustomersComponent {
   searchCustomerForm : FormGroup = new FormGroup({})
   searchTerm: string = '';
   sortTerm: string = 'asc';
+
+  
+  currentPage: number = 1;
+  itemsPerPage: number = 6;
 
   constructor(private customerService: CustomersService,private snackBar: MatSnackBar){
     
@@ -88,6 +93,25 @@ export class CustomersComponent {
       }
     
     })
+  }
+
+  get paginatedBooks() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.customers.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  // Method to go to the next page
+  nextPage() {
+    if (this.currentPage * this.itemsPerPage < this.customers.length) {
+      this.currentPage++;
+    }
+  }
+
+  // Method to go to the previous page
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
   }
 
   showSuccess(message: string) {
