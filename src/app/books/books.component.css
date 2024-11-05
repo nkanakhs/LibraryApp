@@ -78,7 +78,7 @@ figcaption {
   display: block;
 
   width: auto;
-  margin-top: 12%;
+  margin-top: 10%;
   padding: 8px 22px;
 
   font-weight: bold;
@@ -91,6 +91,7 @@ figcaption {
   top: 0;
   right: 12px;
 
+  border-radius: 15px;
   color: var(--white-1);
   background: hsla(var(--hue), 25%, 10%, .5);
 }
@@ -153,7 +154,7 @@ li {
   width: 100%;
   margin-top: 12px;
   padding-bottom: 12px;
-
+  border-bottom: 1px solid  rgb(17, 17, 22);
   font-size: 14px;
   text-align: center;
 
@@ -316,19 +317,29 @@ button:focus+.design-container {
   border-radius: 10px;
 }
 
-.custom-button{
+.custom-button{            
+  border: 2px solid #eceff3; 
   width: 120px;
   height: 40px;
   display: block;
   margin-bottom: 6px;
 }
-.view-button{
-  display: block;
-  margin-bottom: 3px;
+
+.custom-button:hover {
+  color: #0f0f0f;
+  border-color: #0f0f0f;
 }
-.delete-button{
-  display: block;
+
+.custom-button-del:hover {
+  color: #f04f4f;
+  border-color: #f04f4f;
 }
+
+.custom-button-view:hover {
+  color: #84f3a5;
+  border-color: #84f3a5;
+}
+
 
 
 .search {
@@ -367,34 +378,7 @@ button:focus+.design-container {
   margin: 20px;
 }
 
-.left-panel {
-  flex: 1;
-  max-width: 250px;
-  height: 270px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-}
 
-.right-panel {
-  flex: 5;
-  padding: 5px;
-  height: 650px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.bottom-left-panel {
-  flex: 1;
-  height: 120px; /* Remaining height to fit below the top left panel */
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-}
 
 .flip-card-container {
   --hue: 150;
@@ -424,20 +408,56 @@ button:focus+.design-container {
 
 .custom-container{
   
-  background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
-  backdrop-filter: blur(3px); /* Adjust blur to preference */
-  border-radius: 8px; /* Optional: softens the edges */
+  background: rgba(255, 255, 255, 0.3); 
+  backdrop-filter: blur(3px); 
+  border-radius: 8px; 
 }
 
+
+.left-panel {
+  flex: 1;
+  max-width: 250px;
+  height: 270px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.right-panel {
+  flex: 5;
+  padding: 5px;
+  height: 650px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.bottom-left-panel {
+  flex: 1;
+  max-width: 250px;
+  height: 120px; /* Remaining height to fit below the top left panel */
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center; 
+  padding: 0 !important;
+}
 
 .pagination {
   display: flex;
-  gap: 10px; /* Space between buttons and text */
+  justify-content: space-between; 
+  padding: 20px;
   align-items: center;
+  max-width: 100%;
 }
 
 .pagination button {
-  padding: 6px 12px;
+  padding: 5px;
+  margin: 1px;
+  max-width: 80px; 
   font-size: 14px;
   border: none;
   border-radius: 4px;
@@ -452,6 +472,11 @@ button:focus+.design-container {
 }
 
 .pagination span {
-  font-size: 14px;
+  flex: 2;
+  text-align: center;
+  font-size: 0.9em;
   color: #333;
+  white-space: nowrap; /* Prevent line break */
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }

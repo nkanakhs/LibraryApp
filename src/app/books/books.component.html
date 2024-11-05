@@ -56,9 +56,9 @@
                       <img src="/backgr-cover.jpg"
                            alt="Brohm Lake"></figure>
                     <div class="example-button">
-                      <button mat-stroked-button class="custom-button" [routerLink] = "['edit-book', book._id]">Edit</button>
-                      <button mat-stroked-button class="custom-button" [routerLink] = "['view-book', book._id]">View</button>
-                      <button mat-stroked-button class="custom-button" (click)="openConfirmModal(book)">Delete</button>
+                      <button class="custom-button" [routerLink] = "['edit-book', book._id]">Edit</button>
+                      <button class="custom-button custom-button-view" [routerLink] = "['view-book', book._id]">View</button>
+                      <button class="custom-button custom-button-del" (click)="openConfirmModal(book)">Delete</button>
                     </div>
                   </div>
                 </div>
