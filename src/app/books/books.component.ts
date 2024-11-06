@@ -89,6 +89,7 @@ export class BooksComponent {
   onSubmit() {
     this.searchTerm = this.searchBookForm.controls['searchTerm'].value
     this.sortTerm = this.searchBookForm.controls['sortTerm'].value
+    this.currentPage = 1;
     this.bookService.getBooksWithParams(this.searchTerm,this.sortTerm).subscribe({
       next: response => (this.books = response.map(x => ({
         ...x,
