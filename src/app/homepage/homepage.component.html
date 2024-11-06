@@ -34,11 +34,11 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="ms-3"></div>
                 <div class="pagination d-flex  align-items-center me-3">
-                    <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-primary me-2">
+                    <button (click)="previousPage()" [disabled]="currentPage === 1" class="me-2" >
                     Previous
                     </button>
                     <span>Page {{ currentPage }} of {{(availableBooks.length / itemsPerPage) | ceil}}</span>
-                    <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= availableBooks.length" class="btn btn-primary ms-2">
+                    <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= availableBooks.length" class="ms-2">
                     Next
                     </button>
                 </div>

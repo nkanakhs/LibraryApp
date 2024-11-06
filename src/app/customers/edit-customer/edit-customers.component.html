@@ -1,88 +1,95 @@
-<div class="container text-center mt-3">
-  <div class="card mx-auto" style="max-width: 600px;">
-    <div class="card-header">
-      {{ title }}
-    </div>
-    <div class="card-body">
-      <form [formGroup]="editCustomerForm" (submit)="onSubmit()">
-
-        <div class="mb-3">
-          <label class="form-label">First Name:</label>
-          <input type="text"
-                 class="form-control"
-                 formControlName="name"
-                 placeholder="Enter first name"
-                 [ngClass]="{'is-invalid': editCustomerForm.controls['name'].errors && (editCustomerForm.controls['name'].touched || editCustomerForm.controls['name'].dirty)}"/>
-          <div
-            *ngIf="editCustomerForm.controls['name'].errors && (editCustomerForm.controls['name'].touched || editCustomerForm.controls['name'].dirty)">
-            <p *ngIf="editCustomerForm.controls['name'].errors?.['required']" class="text-danger">First name is
-              required</p>
-            <p *ngIf="editCustomerForm.controls['name'].errors?.['minlength']" class="text-danger">First name must be at
-              least 3 characters</p>
-            <p *ngIf="editCustomerForm.controls['name'].errors?.['maxlength']" class="text-danger">First name cannot be
-              longer than 15 characters</p>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Last Name:</label>
-          <input type="text"
-                 class="form-control"
-                 formControlName="surname"
-                 placeholder="Enter last name"
-                 [ngClass]="{'is-invalid': editCustomerForm.controls['surname'].errors && (editCustomerForm.controls['surname'].touched || editCustomerForm.controls['surname'].dirty)}"/>
-          <div
-            *ngIf="editCustomerForm.controls['surname'].errors && (editCustomerForm.controls['surname'].touched || editCustomerForm.controls['surname'].dirty)">
-            <p *ngIf="editCustomerForm.controls['surname'].errors?.['required']" class="text-danger">Last name is
-              required</p>
-            <p *ngIf="editCustomerForm.controls['surname'].errors?.['minlength']" class="text-danger">Last name must be
-              at least 3 characters</p>
-            <p *ngIf="editCustomerForm.controls['surname'].errors?.['maxlength']" class="text-danger">Last name cannot
-              be longer than 15 characters</p>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Phone Number:</label>
-          <input type="text"
-                 class="form-control"
-                 formControlName="phoneNumber"
-                 placeholder="Enter phone number"
-                 [ngClass]="{'is-invalid': editCustomerForm.controls['phoneNumber'].errors && (editCustomerForm.controls['phoneNumber'].touched || editCustomerForm.controls['phoneNumber'].dirty)}"/>
-          <div
-            *ngIf="editCustomerForm.controls['phoneNumber'].errors && (editCustomerForm.controls['phoneNumber'].touched || editCustomerForm.controls['phoneNumber'].dirty)">
-            <p *ngIf="editCustomerForm.controls['phoneNumber'].errors?.['required']" class="text-danger">Phone number is
-              required</p>
-            <p *ngIf="editCustomerForm.controls['phoneNumber'].errors?.['minlength']" class="text-danger">Phone number
-              must be at least 8 digits</p>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Email:</label>
-          <input type="text"
-                 class="form-control"
-                 formControlName="email"
-                 placeholder="Enter email"
-                 [ngClass]="{'is-invalid': editCustomerForm.controls['email'].errors && (editCustomerForm.controls['email'].touched || editCustomerForm.controls['email'].dirty)}"/>
-          <div
-            *ngIf="editCustomerForm.controls['email'].errors && (editCustomerForm.controls['email'].touched || editCustomerForm.controls['email'].dirty)">
-            <p *ngIf="editCustomerForm.controls['email'].errors?.['required']" class="text-danger">Email is required</p>
-            <p *ngIf="editCustomerForm.controls['email'].errors?.['email']" class="text-danger">Email is not in the
-              correct format</p>
-          </div>
-        </div>
-
-        <div class="text-center mb-4">
-          <button [ngClass]="{ 'disabled-button': isDisabled }"
-                  class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none
-                   text-white font-bold py-2 px-4 rounded"
-                  type="submit"
-                  [disabled]="editCustomerForm.invalid">
-            Upload
-          </button>
-        </div>
-      </form>
+@if (loading == true) {
+  <div class="text-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
   </div>
-</div>
+} @else {
+  <div class="container text-center mt-3">
+    <div class="card mx-auto" style="max-width: 600px;">
+      <div class="card-header">
+        {{ title }}
+      </div>
+      <div class="card-body">
+        <form [formGroup]="editCustomerForm" (submit)="onSubmit()">
+
+          <div class="mb-3">
+            <label class="form-label">First Name:</label>
+            <input type="text"
+                  class="form-control"
+                  formControlName="name"
+                  placeholder="Enter first name"
+                  [ngClass]="{'is-invalid': editCustomerForm.controls['name'].errors && (editCustomerForm.controls['name'].touched || editCustomerForm.controls['name'].dirty)}"/>
+            <div
+              *ngIf="editCustomerForm.controls['name'].errors && (editCustomerForm.controls['name'].touched || editCustomerForm.controls['name'].dirty)">
+              <p *ngIf="editCustomerForm.controls['name'].errors?.['required']" class="text-danger">First name is
+                required</p>
+              <p *ngIf="editCustomerForm.controls['name'].errors?.['minlength']" class="text-danger">First name must be at
+                least 3 characters</p>
+              <p *ngIf="editCustomerForm.controls['name'].errors?.['maxlength']" class="text-danger">First name cannot be
+                longer than 15 characters</p>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Last Name:</label>
+            <input type="text"
+                  class="form-control"
+                  formControlName="surname"
+                  placeholder="Enter last name"
+                  [ngClass]="{'is-invalid': editCustomerForm.controls['surname'].errors && (editCustomerForm.controls['surname'].touched || editCustomerForm.controls['surname'].dirty)}"/>
+            <div
+              *ngIf="editCustomerForm.controls['surname'].errors && (editCustomerForm.controls['surname'].touched || editCustomerForm.controls['surname'].dirty)">
+              <p *ngIf="editCustomerForm.controls['surname'].errors?.['required']" class="text-danger">Last name is
+                required</p>
+              <p *ngIf="editCustomerForm.controls['surname'].errors?.['minlength']" class="text-danger">Last name must be
+                at least 3 characters</p>
+              <p *ngIf="editCustomerForm.controls['surname'].errors?.['maxlength']" class="text-danger">Last name cannot
+                be longer than 15 characters</p>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Phone Number:</label>
+            <input type="text"
+                  class="form-control"
+                  formControlName="phoneNumber"
+                  placeholder="Enter phone number"
+                  [ngClass]="{'is-invalid': editCustomerForm.controls['phoneNumber'].errors && (editCustomerForm.controls['phoneNumber'].touched || editCustomerForm.controls['phoneNumber'].dirty)}"/>
+            <div
+              *ngIf="editCustomerForm.controls['phoneNumber'].errors && (editCustomerForm.controls['phoneNumber'].touched || editCustomerForm.controls['phoneNumber'].dirty)">
+              <p *ngIf="editCustomerForm.controls['phoneNumber'].errors?.['required']" class="text-danger">Phone number is
+                required</p>
+              <p *ngIf="editCustomerForm.controls['phoneNumber'].errors?.['minlength']" class="text-danger">Phone number
+                must be at least 8 digits</p>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email:</label>
+            <input type="text"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="Enter email"
+                  [ngClass]="{'is-invalid': editCustomerForm.controls['email'].errors && (editCustomerForm.controls['email'].touched || editCustomerForm.controls['email'].dirty)}"/>
+            <div
+              *ngIf="editCustomerForm.controls['email'].errors && (editCustomerForm.controls['email'].touched || editCustomerForm.controls['email'].dirty)">
+              <p *ngIf="editCustomerForm.controls['email'].errors?.['required']" class="text-danger">Email is required</p>
+              <p *ngIf="editCustomerForm.controls['email'].errors?.['email']" class="text-danger">Email is not in the
+                correct format</p>
+            </div>
+          </div>
+
+          <div class="text-center mb-4">
+            <button  class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none
+                    font-bold py-2 px-4 rounded"
+                    type="submit"
+                    [disabled]="editCustomerForm.invalid">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+}

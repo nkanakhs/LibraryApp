@@ -35,5 +35,6 @@ export const routes: Routes = [
   {path: 'customers/add-customer', component: EditCustomersComponent},
   {path: 'customers/view-customer/:id', component: ViewCustomersComponent},
 
-  {path: '**', component: PageNotFoundComponent},
+  { path: '404', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '404' }
 ];

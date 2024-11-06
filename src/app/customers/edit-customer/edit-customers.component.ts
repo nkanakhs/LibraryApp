@@ -14,8 +14,9 @@ import {NgClass, NgIf} from '@angular/common';
   styleUrl: './edit-customers.component.css'
 })
 export class EditCustomersComponent {
-  isDisabled: boolean = false;
 
+  isDisabled: boolean = false;
+  loading = true;
   customer_id : string | null = null;
   customer !: customer;
   title : string = '';
@@ -38,18 +39,21 @@ export class EditCustomersComponent {
     if (this.customer_id){  // we are in the edit customer mode
 
       this.title = 'Edit Customer';
-      this.customerService.getCustomer(this.customer_id).subscribe((data) =>{
+      this.customerService.getCustomer(this.customer_id).subscribe({
+        next: response =>{
+          this.customer = response;
 
-        this.customer = data;
-
-        this.editCustomerForm.controls['name'].setValue(this.customer.name);
-        this.editCustomerForm.controls['surname'].setValue(this.customer.surname);
-        this.editCustomerForm.controls['email'].setValue(this.customer.email);
-        this.editCustomerForm.controls['phoneNumber'].setValue(this.customer.phoneNumber);
-
+          this.editCustomerForm.controls['name'].setValue(this.customer.name);
+          this.editCustomerForm.controls['surname'].setValue(this.customer.surname);
+          this.editCustomerForm.controls['email'].setValue(this.customer.email);
+          this.editCustomerForm.controls['phoneNumber'].setValue(this.customer.phoneNumber);
+        },
+        complete: () =>{
+          this.loading = false
+        }
       })
     }else{ // add customer mode
-      // this.buttonDisabled = true;
+      this.loading = false
       this.title = 'Add Customer';
     }
 

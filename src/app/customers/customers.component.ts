@@ -32,7 +32,7 @@ export class CustomersComponent {
 
   
   currentPage: number = 1;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 8;
 
   constructor(private customerService: CustomersService,private snackBar: MatSnackBar){
     this.searchCustomerForm = new FormGroup({

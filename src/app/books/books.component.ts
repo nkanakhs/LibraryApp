@@ -35,7 +35,7 @@ export class BooksComponent {
   sortSub ?: Subscription;
 
   currentPage: number = 1;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 8;
 
   constructor(private customDatePipe: CustomDatePipe, private bookService: BookService,private snackBar: MatSnackBar){
     this.searchBookForm = new FormGroup({
@@ -121,10 +121,8 @@ export class BooksComponent {
     modalRef.result.then(
       (result) => {
         this.deleteBook(book)
-        //console.log('Modal closed with:', result);
       },
       (reason) => {
-        // console.log('Modal dismissed with:', reason);
       }
     );
   }
