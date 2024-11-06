@@ -1,7 +1,7 @@
 
 html, body { height: 100%; }
 body { margin: 0;
-  background: linear-gradient(to left, #FFDAB9, #ffc684);  
+    background:  #FFDAB9;  
     background-size: cover;
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 

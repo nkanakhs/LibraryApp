@@ -410,7 +410,7 @@ button:focus+.design-container {
   max-width: 250px;
   height: 270px;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color:rgba(249, 249, 249, 0.9);
   border-radius: 8px;
 }
 
@@ -418,7 +418,7 @@ button:focus+.design-container {
   flex: 5;
   padding: 5px;
   height: 850px;
-  background-color: #ffffff;
+  background-color: rgba(249, 249, 249, 0.9);
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -430,7 +430,7 @@ button:focus+.design-container {
   flex: 1;
   max-width: 250px;
   height: 120px; /* Remaining height to fit below the top left panel */
-  background-color: #fff;
+  background-color: rgba(249, 249, 249, 0.9);
   border-radius: 8px;
   display: flex;
   align-items: center; 
@@ -491,5 +491,53 @@ button:focus+.design-container {
       flex: 1 1 auto;
       max-width: 33.3333%; /* Ensures the item width is restricted to 33% */
       margin: 0 8px; /* Adds space between cards when fewer than 3 */
+  }
+}
+
+
+
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column; /* Stack panels vertically */
+  }
+
+  .left-panel, .right-panel, .bottom-left-panel {
+    width: 100%; /* Full width for all panels */
+    max-width: none; /* Remove max-width restriction */
+  }
+
+  /* Adjust heights and padding for better fit on smaller screens */
+  .left-panel {
+    height: auto;
+    padding: 15px;
+  }
+
+  .right-panel {
+    height: auto;
+    padding: 15px;
+    margin-top: 10px; /* Space between panels */
+  }
+
+  .bottom-left-panel {
+    height: auto;
+    padding: 15px;
+    margin-top: 10px; /* Space between panels */
+  }
+}
+
+/* Further fine-tuning for very small screens (up to 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 10px; /* Reduce container padding for very small screens */
+  }
+
+  .left-panel, .right-panel, .bottom-left-panel {
+    padding: 10px; /* Further reduce padding in each panel */
+  }
+
+  /* Smaller font size for pagination text to fit better on smaller screens */
+  .pagination span {
+    font-size: 0.8em;
   }
 }
