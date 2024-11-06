@@ -1,17 +1,29 @@
- .navbar{
-    opacity: 0.9;
-   background-color: #eee !important;
-   justify-content: center !important;
+.navbar {
+  transition: background-color 0.3s ease;
 }
 
-.img-log-c{
-    object-fit:cover;
-    width:20px;
-    height:40px;
+.navbar:hover {
+  background-color: #e0e0e0; /* Change background on hover */
 }
 
-.custom-visible {
-    visibility: visible !important; /* Override the collapse class */
-  }
+.nav-link {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
 
+.nav-link:hover {
+  color: #ff0000; /* Change text color on hover */
+  transform: scale(1.05); /* Slightly enlarge the link */
+}
 
+.dropdown-menu {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  display: none; /* Hide by default */
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1; /* Show dropdown on hover */
+  transform: translateY(0);
+  display: block; /* Show dropdown */
+}

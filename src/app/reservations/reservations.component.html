@@ -1,56 +1,52 @@
 @if(loading == true){
-    <div class="container text-center mt-5">
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
+  <div class="container text-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
+  </div>
 }@else {
-    <div class="container text-center mt-3">
-        <div class="table-responsive rounded-4 border-3 color-bg-custom">
-            <table class="table table-hover custom-font">
-                <thead class="custom-header">
-                    <tr>
-                        <th scope="col text-base">#</th>
-                        <th scope="col text-base">Book Name</th>
-                        <th scope="col text-base">Customer Name</th>
-                        <th scope="col text-base">Status</th>
-                        <th scope="col text-base">Reserved On</th>
-                        <th scope="col text-base">Returned By</th>
-                        <th scope="col text-base">Actions</th>
-                    </tr>
-                </thead>
-                <tbody >
-                @for(reservation of paginatedReservations; track idx; let idx= $index;){
-                    <tr>
-                        <th class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{idx + 1 + (currentPage -1)*itemsPerPage}}</th>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.book.name}}</td>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.customer.name}} {{reservation.customer.surname}}</td>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.status}}</td>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.reservedOn}}</td>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.returnBy}}</td>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
-                            <section>
-                                <div class="example-button-row">
-                                    <button mat-stroked-button class="edit-button" (click)="releaseReservation(reservation)">Release</button>
-                                </div>
-                            </section>
-                        </td>
-                    </tr>
-                }
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <button mat-stroked-button class="edit-button ms-3" [routerLink] = "['add-reservation']">Add new reservation</button>
-                <div class="pagination d-flex  align-items-center me-3">
-                    <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-primary me-2">
-                    Previous
-                    </button>
-                    <span>Page {{ currentPage }} of {{(reservations.length / itemsPerPage) | ceil}}</span>
-                    <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= reservations.length" class="btn btn-primary ms-2">
-                    Next
-                    </button>
-                </div>
-            </div>
+  <div class="container mt-3">
+    <div class="table-responsive rounded shadow-lg">
+      <table class="table table-hover custom-font">
+        <thead class="custom-thead">
+        <tr>
+          <th>#</th>
+          <th>Book Name</th>
+          <th>Customer Name</th>
+          <th>Status</th>
+          <th>Reserved On</th>
+          <th>Returned By</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for(reservation of paginatedReservations; track idx; let idx= $index;){
+            <tr>
+              <th class="align-middle">{{idx + 1 + (currentPage - 1) * itemsPerPage}}</th>
+              <td class="align-middle">{{reservation.book.name}}</td>
+              <td class="align-middle">{{reservation.customer.name}} {{reservation.customer.surname}}</td>
+              <td class="align-middle">{{reservation.status}}</td>
+              <td class="align-middle">{{reservation.reservedOn}}</td>
+              <td class="align-middle">{{reservation.returnBy}}</td>
+              <td class="align-middle">
+                <button mat-stroked-button class="btn btn-danger" (click)="releaseReservation(reservation)">Release</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <button mat-stroked-button class="btn btn-success" [routerLink]="['add-reservation']">Add New Reservation</button>
+        <div class="pagination d-flex align-items-center">
+          <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-primary me-2">
+            Previous
+          </button>
+          <span>Page {{ currentPage }} of {{(reservations.length / itemsPerPage) | ceil}}</span>
+          <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= reservations.length" class="btn btn-primary ms-2">
+            Next
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 }

@@ -1,53 +1,67 @@
-.view-button{
-  margin-right: 1%;
-  background: rgba(177, 177, 177, 0.2);
-  color: #383838 !important;
-  border-radius: 40px !important;
-  border-color:   rgba(185, 185, 184, 0.2)!important; /* Solid border color */
+/* General Styles */
+body {
+  background-color: #f8f9fa; /* Light background for better contrast */
+  font-family: 'Arial', sans-serif; /* Use a clean font */
 }
 
-.edit-button{
-  margin-right: 1%;
-  background: rgba(178, 233, 224, 0.2);
-  color: #383838 !important;
-  border-radius: 40px !important;
-  border-color:   rgba(185, 185, 184, 0.2)!important; /* Solid border color */
+.container {
+  padding: 20px;
 }
-.delete-button{
-  margin-right: 1%;
-  background: rgba(250, 79, 79, 0.2);
-  color: #383838 !important;
-  border-radius: 40px !important;
-  border-color:   rgba(185, 185, 184, 0.2)!important; /* Solid border color */
+
+/* Button Styles */
+.btn {
+  border-radius: 25px; /* More modern rounded corners */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+.btn:hover {
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Specific Button Colors */
+.btn-success {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50 !important; /* Darker text for better contrast */
+}
+
+.btn-danger {
+  background: rgba(244, 67, 54, 0.2);
+  color: #F44336 !important;
+}
+
+/* Table Styles */
+.table {
+  border-collapse: collapse; /* Ensures no gaps between cells */
 }
 
 .custom-thead {
-  border-radius: 15px;
-  border-collapse: separate;
-  border-spacing: 0;
-  overflow: hidden;
+  background-color: #ffffff; /* White background for header */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 thead th {
-  background-color: rgba(248 250 252);
-  color: rgb(148 163 184);
-} 
-
-.custom-header th {
-  padding-top: 25px;
-  padding-bottom: 25px; /* Adjusts header row height */
-  font-weight: 500 !important;
+  color: #6c757d; /* Darker gray for header text */
+  padding: 15px; /* Padding for better spacing */
+  font-weight: 600; /* Slightly bolder header */
 }
 
-tbody tr th {
-  font-weight: 500 !important;
+tbody tr {
+  transition: background-color 0.3s; /* Smooth transition for row hover */
 }
 
-.color-bg-custom{
-  background-color: rgba(248 250 252) !important;
+tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Light hover effect */
 }
 
-.custom-font{
-  font-size: 0.875rem !important;
-  line-height: 1.25rem !important;
+/* Font Styles */
+.custom-font {
+  font-size: 0.9rem; /* Slightly larger font size */
+  line-height: 1.5; /* Improved line height for readability */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .btn {
+    width: 100%; /* Full width buttons on smaller screens */
+  }
 }
