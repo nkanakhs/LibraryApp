@@ -1,73 +1,73 @@
 @if (loading == true) {
-    <div class="text-center mt-5">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
+  <div class="text-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+} @else {
+  <div class="main-container d-flex">
+    <div class="left-column">
+      <div class="left-panel">
+        <form [formGroup]= "searchCustomerForm" >
+          <div class="search d-flex align-items-center p-2 mb-4 mt-3">
+            <div class="icon me-2"><i class="bi bi-search"></i></div>
+            <input type="text" formControlName = "searchTerm" placeholder="Search..." >
+          </div>
+          <select class="sort-select" formControlName = "sortTerm">
+            <option value="" disabled selected>Sort by</option>
+            <option value="asc">asc</option>
+            <option value="desc">desc</option>
+          </select>
+        </form>
+        <button mat-stroked-button class="edit-button mt-4" [routerLink] = "['add-customer']">Add new Customer</button>
+      </div>
+      <div class="bottom-left-panel mt-2">
+        <div class="pagination">
+          <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+          <span>Page {{currentPage}} of {{ (customers.length / itemsPerPage) | ceil}}</span>
+          <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= customers.length">Next</button>
+        </div>
       </div>
     </div>
-  } @else {
-    <div class="main-container d-flex">
-      <div class="left-column">
-        <div class="left-panel">
-          <form [formGroup]= "searchCustomerForm" >
-            <div class="search d-flex align-items-center p-2 mb-4 mt-3">
-              <div class="icon me-2"><i class="bi bi-search"></i></div>
-              <input type="text" formControlName = "searchTerm" placeholder="Search..." >
-            </div>
-            <select class="sort-select" formControlName = "sortTerm">
-              <option value="" disabled selected>Sort by</option>
-              <option value="asc">asc</option>
-              <option value="desc">desc</option>
-            </select>
-          </form>
-          <button mat-stroked-button class="edit-button mt-4" [routerLink] = "['add-customer']">Add new Customer</button>
-        </div>
-        <div class="bottom-left-panel mt-2">
-          <div class="pagination">
-            <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-            <span>Page {{currentPage}} of {{ (customers.length / itemsPerPage) | ceil}}</span>
-            <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= customers.length">Next</button>
-          </div>
-        </div>
-      </div>
-      <div class="right-panel">
-          <div class="row row-cols-1 row-cols-md-3 g-4">
-            @for (customer of paginatedCustomers; track customer._id; let idx = $index) {
-              <div class="col d-flex justify-content-center">
-                <div class="flip-card-container ">
-                  <div class="flip-card">
-                    <div class="card-front">
-                      <figure>
-                        <img
-                          src="/backgr-cover.jpg"
-                          alt="Brohm Lake">
-                        <figcaption>{{customer.name}}</figcaption>
-                      </figure>
-                      <ul>
-                        <li>{{customer.name}}</li>
-                        <li>{{customer.surname}}</li>
-                        <li>{{customer.email}}</li>
-                        <li>{{customer.phoneNumber}}</li>
-                      </ul>
-                    </div>
-                    <div class="card-back">
-                      <figure>
-                        <div class="img-bg"></div>
-                        <img src="/backgr-cover.jpg"
-                             alt="Brohm Lake"></figure>
-                      <div class="example-button">
-                        <button class="custom-button" [routerLink] = "['edit-customer', customer._id]">Edit</button>
-                        <button class="custom-button custom-button-view" [routerLink] = "['view-customer', customer._id]">View</button>
-                        <button class="custom-button custom-button-del" (click)="openConfirmModal(customer)">Delete</button>
-                      </div>
-                    </div>
+    <div class="right-panel">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        @for (customer of paginatedCustomers; track customer._id; let idx = $index) {
+          <div class="col d-flex justify-content-center">
+            <div class="flip-card-container ">
+              <div class="flip-card">
+                <div class="card-front">
+                  <figure>
+                    <img
+                      src="/customer-image.jpg"
+                      alt="Brohm Lake">
+                    <figcaption>{{customer.name}}</figcaption>
+                  </figure>
+                  <ul>
+                    <li>{{customer.name}}</li>
+                    <li>{{customer.surname}}</li>
+                    <li>{{customer.email}}</li>
+                    <li>{{customer.phoneNumber}}</li>
+                  </ul>
+                </div>
+                <div class="card-back">
+                  <figure>
+                    <div class="img-bg"></div>
+                    <img src="/customer-image.jpg"
+                         alt="Brohm Lake"></figure>
+                  <div class="example-button">
+                    <button class="custom-button" [routerLink] = "['edit-customer', customer._id]">Edit</button>
+                    <button class="custom-button custom-button-view" [routerLink] = "['view-customer', customer._id]">View</button>
+                    <button class="custom-button custom-button-del" (click)="openConfirmModal(customer)">Delete</button>
                   </div>
                 </div>
               </div>
-  
-            }
-            
+            </div>
           </div>
+
+        }
+
       </div>
     </div>
-  }
-  
+  </div>
+}
+
