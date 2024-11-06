@@ -497,21 +497,21 @@ button:focus+.design-container {
 
 @media (min-width: 768px) {
   /* For rows with 3 cards */
-  .row-cols-md-3 {
+  .row-cols-md-4 {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between; /* Space between items */
   }
   
-  .row-cols-md-3 > * {
-      flex: 1 1 32%; /* This allows cards to take up ~1/3 of the row width */
+  .row-cols-md-4 > * {
+      flex: 1 1 25%; /* This allows cards to take up ~1/3 of the row width */
       margin-bottom: 16px; /* Add some spacing between rows */
   }
   
   /* Center items when there are fewer than 3 cards */
-  .row-cols-md-3.fewer-cards > * {
+  .row-cols-md-4.fewer-cards > * {
       flex: 1 1 auto;
-      max-width: 33.3333%; /* Ensures the item width is restricted to 33% */
+      max-width: 25%; /* Ensures the item width is restricted to 33% */
       margin: 0 8px; /* Adds space between cards when fewer than 3 */
   }
 }
