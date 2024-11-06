@@ -100,6 +100,7 @@ export class CustomersComponent {
     
     this.searchTerm = this.searchCustomerForm.controls['searchTerm'].value
     this.sortTerm = this.searchCustomerForm.controls['sortTerm'].value
+    this.currentPage = 1;
     //client
     this.customerService.getCustomers().subscribe({
       next: response => {

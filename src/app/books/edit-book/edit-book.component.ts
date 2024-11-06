@@ -107,10 +107,10 @@ export class EditBookComponent {
         }
         this.bookService.addBook(this.book).subscribe({
           next: response => {
-            console.log(response)
+            //console.log(response)
           },
           error: error => {
-            console.log(error)
+            //console.log(error)
           },
           complete: () => {
             this.showSuccess('Book added successfully')

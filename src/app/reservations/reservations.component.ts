@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
 import { customer } from '../Interfaces/customer';
 import { CustomersService } from '../Services/customers.service';
 import { CeilPipe } from "../ceil.pipe";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-reservations',
@@ -25,7 +26,8 @@ export class ReservationsComponent {
   currentPage: number = 1;
   itemsPerPage: number = 5;
 
-  constructor(private customDatePipe: CustomDatePipe, private reservationsService: ReservationsService, private customerService: CustomersService){
+  constructor(private customDatePipe: CustomDatePipe, private reservationsService: ReservationsService,
+              private customerService: CustomersService,private snackBar: MatSnackBar){
 
   }
 
@@ -48,7 +50,7 @@ export class ReservationsComponent {
                     book: hasValidBook? reservation.book : {name:'Book removed', available:false , type:'Uknown' , createdOn: new Date()
                                                                   , year: NaN, author: 'Unknown author', _id: 'N/A' },
                     reservedOn: this.customDatePipe.transform(reservation.reservedOn),
-                    returnBy: this.customDatePipe.transform(reservation.reservedOn)
+                    returnBy: this.customDatePipe.transform(reservation.returnBy)
                   })
 
               },
@@ -111,11 +113,22 @@ export class ReservationsComponent {
         next : response =>{},
         error: error =>{},
         complete: ()=>{
-          
+          this.currentPage = 1;
+          this.reservations = [];
+          this.loading = true;
+          this.showSuccess('Book released successfully')
+          this.getReservations()
         }
     })
   }
 
-  
+  showSuccess(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      panelClass: ['success'],
+      verticalPosition: 'top',
+      horizontalPosition: 'right'
+    });
+  }
   
 }

@@ -8,6 +8,7 @@ import { postReservation, reservation } from '../../Interfaces/reservation';
 import { ReservationsService } from '../../Services/reservations.service';
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-reservation',
@@ -25,7 +26,7 @@ export class EditReservationsComponent {
 
   addReservationForm : FormGroup = new FormGroup({});
   
-  constructor(private bookService: BookService, private customerService: CustomersService, 
+  constructor(private bookService: BookService, private customerService: CustomersService, private snackBar: MatSnackBar,
               private reservationService : ReservationsService, private router: Router){
     this.addReservationForm = new FormGroup({
       book: new FormControl('', Validators.required ),
@@ -66,16 +67,29 @@ export class EditReservationsComponent {
         customerId: this.addReservationForm.controls['customer'].value,
         returnBy: this.addReservationForm.controls['returnedBy'].value
       }
-      //console.log(this.reservation)
+      //console.log(new Date(this.reservation.returnBy))
       this.reservationService.postReservation(this.reservation).subscribe({
         next: response => {
           this.router.navigate(['/reservations'])
         },
         error: error =>{
-          //console.log(error)
+        },
+        complete: () =>{
+          this.showSuccess('Reservation was successfully added')
+          this.router.navigate(['/reservations'])
         }
       })
     }
+  }
+
+  
+  showSuccess(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      panelClass: ['success'],
+      verticalPosition: 'top',
+      horizontalPosition: 'right'
+    });
   }
 
 }
