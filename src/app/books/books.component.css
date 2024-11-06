@@ -332,13 +332,25 @@ button:focus+.design-container {
   border-color: #84f3a5;
 }
 
+.edit-button{
+  margin-right: 1%;
+  background: #c1cf9e;
+  color: #f7f6f6 !important;
+  border-radius: 40px !important;
+  border-color:   rgba(185, 185, 184, 0.2)!important; /* Solid border color */
+}
 
+.edit-button:hover{
+  background: #c1cf9e;
+  color: rgba(160, 154, 153, 0.774);
+}
 
 .search {
   display: flex;
   align-items: center;
   padding: 8px;
   background-color: #fff;
+  border: 1px solid #ccc;
   border-radius: 16px;
 }
 
@@ -360,8 +372,9 @@ button:focus+.design-container {
   width: 100%;
   padding: 8px;
   margin-top: 10px;
+  background-color: #fff;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 .main-container {
@@ -419,7 +432,7 @@ button:focus+.design-container {
   flex: 5;
   padding: 5px;
   height: 850px;
-  background-color: #ffffff;
+  background-color: #f9f9f9;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -431,7 +444,7 @@ button:focus+.design-container {
   flex: 1;
   max-width: 250px;
   height: 120px; /* Remaining height to fit below the top left panel */
-  background-color: #fff;
+  background-color: #f9f9f9;
   border-radius: 8px;
   display: flex;
   align-items: center; 

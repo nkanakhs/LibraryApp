@@ -1,66 +1,9 @@
-/* .view-button{
-    margin-right: 1%;
-    background: rgba(177, 177, 177, 0.2);
-    color: #383838 !important;
-    border-radius: 40px !important;
-    border-color:   rgba(185, 185, 184, 0.2)!important;
-}
 
-.edit-button{
-    margin-right: 1%;
-    background: rgba(178, 233, 224, 0.2);
-    color: #383838 !important;
-    border-radius: 40px !important;
-    border-color:   rgba(185, 185, 184, 0.2)!important; 
-}
-.delete-button{
-    margin-right: 1%;
-    background: rgba(250, 79, 79, 0.2);
-    color: #383838 !important;
-    border-radius: 40px !important;
-    border-color:   rgba(185, 185, 184, 0.2)!important; 
-}
-
-.custom-thead {
-    border-radius: 15px;
-    border-collapse: separate;
-    border-spacing: 0;
-    overflow: hidden;
-}
-
-thead th {
-    background-color: rgba(248 250 252);
-    color: rgb(148 163 184);
-} 
-
-.custom-header th {
-    padding-top: 25px;
-    padding-bottom: 25px; 
-    font-weight: 500 !important;
-}
-
-tbody tr th {
-    font-weight: 500 !important;
-}
-
-.color-bg-custom{
-    background-color: rgba(248 250 252) !important;
-}
-
-.custom-font{
-    font-size: 0.875rem !important;
-    line-height: 1.25rem !important;
-} */
-
-
-
-/* hover and focus-within states */
 .flip-card-container:hover .flip-card,
 .flip-card-container:focus-within .flip-card {
   transform: rotateY(180deg);
 }
 
-/* .card-... */
 .card-front,
 .card-back {
   width: 100%;
@@ -80,24 +23,20 @@ tbody tr th {
   align-items: center;
 }
 
-/* .card-front */
 .card-front {
   transform: rotateY(0deg);
   z-index: 2;
 }
 
-/* .card-back */
 .card-back {
   transform: rotateY(180deg);
   z-index: 1;
 }
 
-/* figure */
 figure {
   z-index: -1;
 }
 
-/* figure, .img-bg */
 figure,
 .img-bg {
   position: absolute;
@@ -108,13 +47,12 @@ figure,
   height: 100%;
 }
 
-/* img */
 img {
   height: 100%;
   border-radius: 24px;
 }
 
-/* figcaption */
+
 figcaption {
   display: block;
 
@@ -137,7 +75,7 @@ figcaption {
   background: hsla(var(--hue), 25%, 10%, .5);
 }
 
-/* .img-bg */
+
 .img-bg {
   background: hsla(var(--hue), 25%, 10%, .5);
 }
@@ -167,14 +105,14 @@ figcaption {
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 60%);
 }
 
-/* hover state */
+
 .flip-card-container:hover .card-front .img-bg::before {
   width: 6px;
   border-left-color: var(--primary);
   border-right-color: var(--primary);
 }
 
-/* ul */
+
 ul {
   padding-top: 50%;
   margin: 0 auto;
@@ -190,7 +128,7 @@ ul {
   flex-direction: column;
 }
 
-/* li */
+
 li {
   width: 100%;
   margin-top: 12px;
@@ -203,8 +141,6 @@ li {
 }
 
 
-
-/* button */
 button {
   font-family: inherit;
   font-weight: bold;
@@ -232,7 +168,7 @@ button:active {
   transform: translate(2px);
 }
 
-/* .design-container */
+
 .design-container {
   --tr: 90;
   --op: .5;
@@ -248,7 +184,7 @@ button:active {
   pointer-events: none;
 }
 
-/* .design */
+
 .design {
   display: block;
 
@@ -331,7 +267,7 @@ button:active {
   top: 56%;
 }
 
-/* states */
+
 button:hover+.design-container,
 button:active+.design-container,
 button:focus+.design-container {
@@ -381,6 +317,18 @@ button:focus+.design-container {
   border-color: #84f3a5;
 }
 
+.edit-button{
+  margin-right: 1%;
+  background: #c1cf9e;
+  color: #f7f6f6 !important;
+  border-radius: 40px !important;
+  border-color:   rgba(185, 185, 184, 0.2)!important; /* Solid border color */
+}
+
+.edit-button:hover{
+  background: #c1cf9e;
+  color: rgba(160, 154, 153, 0.774);
+}
 
 
 .search {
@@ -388,6 +336,7 @@ button:focus+.design-container {
   align-items: center;
   padding: 8px;
   background-color: #fff;
+  border: 1px solid #ccc;
   border-radius: 16px;
 }
 
@@ -409,8 +358,9 @@ button:focus+.design-container {
   width: 100%;
   padding: 8px;
   margin-top: 10px;
+  background-color: #fff;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 .main-container {
@@ -502,7 +452,7 @@ button:focus+.design-container {
   font-size: 14px;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: #c1cf9e;
   color: white;
   cursor: pointer;
 }
