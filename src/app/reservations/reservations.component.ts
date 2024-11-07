@@ -1,4 +1,4 @@
-import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ReservationsService } from '../Services/reservations.service';
 import { reservation } from '../Interfaces/reservation';
 import { CustomDatePipe } from '../customDate.pipe';
@@ -56,7 +56,7 @@ export class ReservationsComponent {
               },
               error: error => 
                 {
-                  console.warn(`Customer with ID ${reservation._id} not found. Adding reservation with placeholder.`);
+                  //console.warn(`Customer with ID ${reservation._id} not found. Adding reservation with placeholder.`);
                   // Fallback - Add reservation without customer details
                   this.reservations.push({
                     ...reservation,
@@ -69,7 +69,7 @@ export class ReservationsComponent {
                 }
           })   
         }else{ // handles the case both customer and book removed
-          console.warn(`Reservation with ID ${reservation._id} has no customer ID. Adding placeholder.`);
+          //console.warn(`Reservation with ID ${reservation._id} has no customer ID. Adding placeholder.`);
           // Fallback - Add reservation with placeholder if no customer ID is available
           this.reservations.push({
             ...reservation,
@@ -83,7 +83,7 @@ export class ReservationsComponent {
       })
     },
     error: error => {
-      console.error('Failed to load reservations:', error);
+      //console.error('Failed to load reservations:', error);
     },
     complete: () => {
       this.loading = false;

@@ -25,13 +25,18 @@
                         <th class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{idx + 1 + (currentPage -1)*itemsPerPage}}</th>
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.book.name}}</td>
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.customer.name}} {{reservation.customer.surname}}</td>
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.status}}</td>
+                        @if(reservation.status=='completed'){
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle" style="color: red;">{{reservation.status}}</td>
+                        }
+                        @if(reservation.status=='active'){
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle" style="color: green;">{{reservation.status}}</td>
+                        }
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.reservedOn}}</td>
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">{{reservation.returnBy}}</td>
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 align-middle">
                             <section>
-                                <div class="example-button-row">
-                                    <button mat-stroked-button class="edit-button" (click)="releaseReservation(reservation)">Release</button>
+                                <div class="example-button-row edit-b">
+                                    <button mat-stroked-button class="edit-button" [disabled]="reservation.status==='completed'" (click)="releaseReservation(reservation)">Release</button>
                                 </div>
                             </section>
                         </td>

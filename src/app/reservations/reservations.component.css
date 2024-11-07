@@ -81,3 +81,12 @@ tbody tr th {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+.edit-b button:disabled{
+  background-color: #ccc;
+  cursor: not-allowed !important;
+}
+
+.mat-stroked-button:disabled {
+  cursor: not-allowed !important;
+}

@@ -92,20 +92,6 @@
           </div>
         </div>
 
-        <div class="mb-3">
-          <div class="form-check d-flex align-items-center ">
-            <input type="checkbox"
-                    class="form-check-input me-2"
-                    formControlName="available">
-                    @if (editbookForm.controls['available'].errors?.['required'] && (editbookForm.controls['available'].touched || editbookForm.controls['available'].dirty) )
-                  {
-                    <p class="text-danger"> Availability is required </p>
-                  }
-
-            <label class="form-check-label">Available</label>
-          </div>
-        </div>
-
         <div class="text-center mb-4">
           <button
                   class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none

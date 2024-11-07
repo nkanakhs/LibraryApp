@@ -33,7 +33,6 @@ export class EditBookComponent {
     this.editbookForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
       author: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
-      available: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
       year: new FormControl('', Validators.required),
       createdOn: new FormControl('', Validators.required)
@@ -58,7 +57,6 @@ export class EditBookComponent {
         this.editbookForm.controls['author'].setValue(this.book.author);
         this.editbookForm.controls['type'].setValue(this.book.type);
         this.editbookForm.controls['year'].setValue(this.book.year);
-        this.editbookForm.controls['available'].setValue(this.book.available);
         this.editbookForm.controls['createdOn'].setValue(now);
 
       })
@@ -73,13 +71,11 @@ export class EditBookComponent {
 
     if (this.book_id) { //on the edit book
       if (this.editbookForm.valid) {
-        console.log(this.editbookForm.controls['available'].value)
         this.book = {
           _id: this.book_id,
           name: this.editbookForm.controls['name'].value,
           year: this.editbookForm.controls['year'].value,
           author: this.editbookForm.controls['author'].value,
-          available: this.editbookForm.controls['available'].value,
           type: this.editbookForm.controls['type'].value,
           createdOn: this.editbookForm.controls['createdOn'].value
         }
@@ -92,6 +88,7 @@ export class EditBookComponent {
           },
           complete: () => {
             this.showSuccess('Book edited successfully')
+            this.router.navigate(['/books'])
           }
         });
       }
@@ -101,7 +98,6 @@ export class EditBookComponent {
           name: this.editbookForm.controls['name'].value,
           year: this.editbookForm.controls['year'].value,
           author: this.editbookForm.controls['author'].value,
-          available: this.editbookForm.controls['available'].value,
           type: this.editbookForm.controls['type'].value,
           createdOn: this.editbookForm.controls['createdOn'].value
         }

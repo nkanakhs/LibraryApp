@@ -61,8 +61,6 @@ export class EditCustomersComponent {
 
   onSubmit(){
 
-    console.log('name of the form:' +this.editCustomerForm.controls['name'].value)
-    console.log('status of the form:' + this.editCustomerForm.valid )
     if(this.customer_id){ //on the edit customer
       if(this.editCustomerForm.valid){
         this.customer = {
