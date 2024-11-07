@@ -5,6 +5,18 @@
   border-radius: 40px !important;
   border-color:   rgba(185, 185, 184, 0.2)!important; /* Solid border color */
 }
+.add-new-button:hover{
+  background-color: #77A06F;
+  border-color: #77A06F;
+}
+
+
+.add-new-button{
+  background-color: #77A06F !important;
+  opacity: 0.8;
+  border-color: #77A06F;
+}
+
 
 .edit-button{
   margin-right: 1%;
@@ -31,7 +43,7 @@
 thead th {
   background-color: rgba(248 250 252);
   color: rgb(148 163 184);
-} 
+}
 
 .custom-header th {
   padding-top: 25px;
@@ -56,11 +68,11 @@ tbody tr th {
 .pagination button {
   padding: 5px;
   margin: 1px;
-  max-width: 80px; 
+  max-width: 80px;
   font-size: 14px;
   border: none;
   border-radius: 4px;
-  background-color: #c1cf9e;
+  background-color: #77A06F;
   color: #333;
   cursor: pointer;
 }

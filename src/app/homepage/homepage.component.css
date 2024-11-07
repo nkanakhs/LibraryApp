@@ -31,7 +31,7 @@
 thead th {
     background-color: rgba(248 250 252);
     color: rgb(148 163 184);
-} 
+}
 
 .custom-header th {
     padding-top: 25px;
@@ -55,17 +55,17 @@ tbody tr th {
 .pagination button {
     padding: 5px;
     margin: 1px;
-    max-width: 80px; 
+    max-width: 80px;
     font-size: 14px;
     border: none;
     border-radius: 4px;
-    background-color: #c1cf9e;
+    background-color: #77A06F;
+  opacity: 0.9;
     color: #333;
     cursor: pointer;
   }
-  
+
   .pagination button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
   }
-  
