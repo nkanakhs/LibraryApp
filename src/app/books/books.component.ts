@@ -70,7 +70,7 @@ export class BooksComponent {
   deleteBook(book : book){
     this.bookService.deleteBook(book).subscribe({
       next: response => console.log(response),
-      error: error => console.log(error),
+      error: error => this.showSuccess('Unable to delete book'),
       complete: () => {
         this.showSuccess('Book deleted successfully')
         this.loading = true

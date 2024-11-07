@@ -1,6 +1,6 @@
 export interface book{
     author: string;
-    available: boolean;
+    available?: boolean;
     createdOn: Date;
     name: string;
     type: string;

@@ -14,21 +14,21 @@
                  placeholder="Enter book name"
                  [ngClass]="{'is-invalid': editbookForm.controls['name'].errors && (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty)}"/>
           <div>
-            @if (editbookForm.controls['name'].errors?.['required']&& 
+            @if (editbookForm.controls['name'].errors?.['required']&&
                             (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty)){
                 <p class="text-danger">Name field is required</p>
-              } 
-              @if (editbookForm.controls['name'].errors?.['minlength']&& 
+              }
+              @if (editbookForm.controls['name'].errors?.['minlength']&&
                             (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty)){
                 <p class="text-danger">Name must be at least 3 characters</p>
-              } 
-              @if (editbookForm.controls['name'].errors?.['maxlength']&& 
+              }
+              @if (editbookForm.controls['name'].errors?.['maxlength']&&
                             (editbookForm.controls['name'].touched || editbookForm.controls['name'].dirty)){
                 <p class="text-danger">Name cannot be longer
                   than 15 characters</p>
-              } 
-            
-            
+              }
+
+
           </div>
         </div>
 
@@ -39,17 +39,17 @@
                  formControlName="author"
                  placeholder="Enter author name"
                  [ngClass]="{'is-invalid': editbookForm.controls['author'].errors && (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty)}"/>
-                 @if (editbookForm.controls['author'].errors?.['required']&& 
+                 @if (editbookForm.controls['author'].errors?.['required']&&
                  (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty))
            {
              <p class="text-danger"> author field is required</p>
            }
-           @if (editbookForm.controls['author'].errors?.['minlength'] && 
+           @if (editbookForm.controls['author'].errors?.['minlength'] &&
                  (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty))
            {
              <p class="text-danger"> author must be at least 3 digits </p>
            }
-           @if (editbookForm.controls['author'].errors?.['maxlength'] && 
+           @if (editbookForm.controls['author'].errors?.['maxlength'] &&
                  (editbookForm.controls['author'].touched || editbookForm.controls['author'].dirty))
            {
              <p class="text-danger"> author cannot be longer than 15 digits </p>
@@ -67,8 +67,8 @@
               @for(type of types; track type;){
                   <option value="{{type}}">{{type}}</option>
               }
-            </select> 
-              @if (editbookForm.controls['type'].errors?.['required'] && 
+            </select>
+              @if (editbookForm.controls['type'].errors?.['required'] &&
                         (editbookForm.controls['type'].touched || editbookForm.controls['type'].dirty))
               {
                 <p class="text-danger"> Type of the book is required </p>
@@ -101,13 +101,13 @@
                   {
                     <p class="text-danger"> Availability is required </p>
                   }
-                  
+
             <label class="form-check-label">Available</label>
           </div>
         </div>
 
         <div class="text-center mb-4">
-          <button 
+          <button
                   class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none
                    font-bold py-2 px-4 rounded"
                   type="submit"
@@ -116,7 +116,7 @@
           </button>
         </div>
 
-        
+
 
       </form>
     </div>

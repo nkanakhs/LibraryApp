@@ -30,7 +30,7 @@ export class CustomersComponent {
   searchSub ?: Subscription;
   sortSub ?: Subscription;
 
-  
+
   currentPage: number = 1;
   itemsPerPage: number = 8;
 
@@ -39,7 +39,7 @@ export class CustomersComponent {
       searchTerm: new FormControl(''),
       sortTerm: new FormControl(''),
     })
-    
+
     this.searchSub = this.searchCustomerForm.get('searchTerm')?.valueChanges.subscribe(() =>{
       this.onSubmit()
     })
@@ -68,7 +68,7 @@ export class CustomersComponent {
         //console.log(response)
       },
       error: error =>{
-        console.log(error)
+        this.showSuccess('Unable to delete Customer')
       },
       complete: () => {
         this.showSuccess('Customer deleted successfully')
@@ -88,7 +88,7 @@ export class CustomersComponent {
     modalRef.result.then(
         (result) => {
             this.deleteCustomer(customer)
-            //console.log('Modal closed with:', result);  
+            //console.log('Modal closed with:', result);
         },
         (reason) => {
            // console.log('Modal dismissed with:', reason);
@@ -97,7 +97,7 @@ export class CustomersComponent {
   }
 
   onSubmit() {
-    
+
     this.searchTerm = this.searchCustomerForm.controls['searchTerm'].value
     this.sortTerm = this.searchCustomerForm.controls['sortTerm'].value
     this.currentPage = 1;
@@ -109,7 +109,7 @@ export class CustomersComponent {
       complete: () =>{
         console.log(this.customers)
       }
-    
+
     })
   }
 
@@ -134,12 +134,12 @@ export class CustomersComponent {
 
   showSuccess(message: string) {
     this.snackBar.open(message, 'Close', {
-      duration: 3000,         
-      panelClass: ['success'], 
-      verticalPosition: 'top', 
-      horizontalPosition: 'right' 
+      duration: 3000,
+      panelClass: ['success'],
+      verticalPosition: 'top',
+      horizontalPosition: 'right'
     });
   }
 
-  
+
 }
