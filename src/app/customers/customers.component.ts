@@ -105,9 +105,13 @@ export class CustomersComponent {
     this.customerService.getCustomers().subscribe({
       next: response => {
         this.customers = response.filter( customer => customer.name.toLowerCase().includes(this.searchTerm.toLowerCase()))
+        // Sort customers based on sortTerm (asc or desc)
+        this.customers.sort((a, b) => {
+          const comparison = a.name.localeCompare(b.name);
+          return this.sortTerm === 'asc' ? comparison : -comparison;
+        });
       },
       complete: () =>{
-        console.log(this.customers)
       }
 
     })
